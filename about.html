@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>About - Maximus Vickers</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --cream: #0A0A0A; --off-white: #111111; --ink: #F0EDE8;
+    --mid: #A09A94; --light: #5C5752; --accent: #7B2FBE; --rule: #222222;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: "DM Sans", sans-serif; background: var(--cream); color: var(--ink); font-size: 16px; line-height: 1.6; overflow-x: hidden; }
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1.2rem 5vw; background: rgba(10,10,10,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--rule); }
+  .nav-logo { font-family: "Cormorant Garamond", serif; font-size: 1.25rem; font-weight: 500; letter-spacing: 0.03em; color: var(--ink); text-decoration: none; display: flex; align-items: center; gap: 0.6rem; }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { font-size: 0.74rem; font-weight: 400; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mid); text-decoration: none; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--ink); }
+  section { padding: 7rem 5vw; }
+  .section-header { display: flex; align-items: baseline; gap: 1.5rem; margin-bottom: 3.5rem; }
+  .section-num { font-family: "Cormorant Garamond", serif; font-size: 0.85rem; font-style: italic; color: var(--light); }
+  .section-title { font-family: "Cormorant Garamond", serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 300; color: var(--ink); letter-spacing: -0.01em; }
+  #about { background: var(--off-white); min-height: 100vh; }
+  .about-grid { display: grid; grid-template-columns: 1fr 1.6fr; gap: 6rem; align-items: start; }
+  .about-tag { display: inline-block; font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mid); border: 1px solid var(--rule); padding: 0.4rem 0.85rem; margin-bottom: 0.5rem; margin-right: 0.4rem; }
+  .about-tags { margin-bottom: 2rem; }
+  .about-body p { font-size: 1.05rem; color: var(--mid); font-weight: 300; line-height: 1.85; margin-bottom: 1.4rem; }
+  .about-body p strong { color: var(--ink); font-weight: 500; }
+  footer { padding: 2rem 5vw; background: #000000; border-top: 1px solid var(--rule); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+  footer span { font-size: 0.72rem; color: var(--mid); letter-spacing: 0.06em; }
+  footer a { color: var(--mid); text-decoration: none; font-size: 0.72rem; transition: color 0.2s; }
+  footer a:hover { color: var(--accent); }
+  .interests-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1rem; }
+  .interest-card { background: #161616; border: 1px solid var(--rule); padding: 1.4rem 1.2rem; display: flex; flex-direction: column; gap: 0.5rem; }
+  .interest-emoji { font-size: 1.6rem; line-height: 1; }
+  .interest-title { font-family: "Cormorant Garamond", serif; font-size: 1rem; font-weight: 500; color: var(--ink); }
+  .interest-desc { font-size: 0.78rem; color: var(--mid); font-weight: 300; line-height: 1.6; }
+  @media (max-width: 960px) {
+    .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .nav-links { gap: 1.4rem; }
+    .interests-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+  @media (max-width: 600px) {
+    .nav-links { display: none; }
+    .interests-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html">Maximus Vickers</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="resume.html">Resume</a></li>
+    <li><a href="portfolio.html">Portfolio</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="video.html">Video</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-header"><span class="section-num">01</span><h2 class="section-title">About Me</h2></div>
+  <div class="about-grid">
+    <div>
+      <div class="about-tags">
+        <span class="about-tag">Entrepreneurship</span>
+        <span class="about-tag">Brand Strategy</span>
+        <span class="about-tag">Music Tech</span>
+        <span class="about-tag">Management</span>
+        <span class="about-tag">Bilingual</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:0.75rem;margin-top:0.5rem;">
+        <img src="https://flagcdn.com/ca.svg" alt="Canada" style="width:1.8rem;height:auto;border-radius:2px;" />
+        <span style="font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--light);">Calgary, AB</span>
+        <span style="color:var(--rule);font-size:0.8rem;">→</span>
+        <img src="https://flagcdn.com/us.svg" alt="United States" style="width:1.8rem;height:auto;border-radius:2px;" />
+        <span style="font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--light);">Miami, FL</span>
+      </div>
+    </div>
+    <div class="about-body">
+      <p>Founder &amp; CEO of FourMeasure, a self-funded social platform redefining how people rate, review, and discover music. I led the company end-to-end across product, brand, and technical development, building an early user base through direct outreach and interviews. FourMeasure helps emerging artists gain discovery while adding a social layer to everyday listeners' music identity.</p>
+      <p>I'm a senior at the University of Miami Herbert Business School pursuing a B.B.A. in Management with a minor in Entrepreneurship. I operate comfortably in diverse environments and actively seek new industries and challenges that expand my perspective. I approach business with intensity and ownership, holding myself to a high standard of execution, efficiency, and continuous growth.</p>
+    </div>
+  </div>
+</section>
+
+<!-- OUTSIDE OF WORK -->
+<section id="interests" style="background: var(--cream); padding-top: 0;">
+  <div class="section-header"><span class="section-num">02</span><h2 class="section-title">Outside of Work</h2></div>
+  <div class="interests-grid">
+    <div class="interest-card">
+      <div class="interest-emoji">🎣</div>
+      <div class="interest-title">Fishing</div>
+      <div class="interest-desc">Deep sea fishing and life on the water. Favorite catch: sailfish.</div>
+    </div>
+    <div class="interest-card">
+      <div class="interest-emoji">🎵</div>
+      <div class="interest-title">Music</div>
+      <div class="interest-desc">Always discovering. Favorite song: Mice on Venus by C418 from the Minecraft soundtrack.</div>
+    </div>
+    <div class="interest-card">
+      <div class="interest-emoji">🎬</div>
+      <div class="interest-title">Film</div>
+      <div class="interest-desc">Favorite film: Mulholland Drive by David Lynch.</div>
+    </div>
+    <div class="interest-card">
+      <div class="interest-emoji">🏋️</div>
+      <div class="interest-title">Gym</div>
+      <div class="interest-desc">Daily discipline, non-negotiable.</div>
+    </div>
+    <div class="interest-card">
+      <div class="interest-emoji">🤖</div>
+      <div class="interest-title">Tech &amp; AI</div>
+      <div class="interest-desc">Deeply interested in AI and machine learning. Always building projects and testing new tools.</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>© 2026 Maximus Vickers</span>
+  <div style="display:flex;gap:1.5rem;">
+    <a href="https://www.linkedin.com/in/maximus-vickers-bb69672b1" target="_blank">LinkedIn</a>
+    <a href="mailto:maximus.vickers@miami.edu">Email</a>
+  </div>
+</footer>
+
+</body>
+</html>
