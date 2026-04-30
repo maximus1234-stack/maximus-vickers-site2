@@ -166,10 +166,14 @@
     position: absolute;
     bottom: 0;
     left: 0;
-    height: 120px;
+    height: 180px;
     width: auto;
     transform: translateY(2px);
+    mix-blend-mode: lighten;
     filter: invert(1);
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
   }
 
   @keyframes skate-across {
@@ -179,8 +183,8 @@
 
   .notes {
     position: absolute;
-    bottom: 95px;
-    left: 55px;
+    bottom: 145px;
+    left: 80px;
     width: 0;
     height: 0;
     pointer-events: none;
@@ -189,7 +193,7 @@
   .note {
     position: absolute;
     font-family: 'Arial', sans-serif;
-    font-size: 22px;
+    font-size: 32px;
     color: white;
     opacity: 0;
     animation: float-note 2s ease-out infinite;
