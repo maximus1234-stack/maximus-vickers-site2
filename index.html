@@ -218,10 +218,30 @@
     }
   }
 
-  .moon {
+  .moon-wrap {
     position: fixed;
-    top: 60px;
-    right: 80px;
+    top: 180px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 80px;
+    z-index: 5;
+  }
+
+  .moon-outline {
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    width: 86px;
+    height: 86px;
+    border: 2px solid white;
+    border-radius: 50%;
+    opacity: 0;
+    animation: outline-toggle 16s steps(1, end) infinite;
+  }
+
+  .moon {
+    position: relative;
     width: 80px;
     height: 80px;
     background: white;
@@ -230,38 +250,70 @@
     image-rendering: pixelated;
     image-rendering: -moz-crisp-edges;
     image-rendering: crisp-edges;
-    box-shadow: 0 0 0 2px white;
-    filter: contrast(1.2);
-    z-index: 5;
   }
+
+  .crater {
+    position: absolute;
+    background: #c8c8c8;
+    border-radius: 50%;
+    z-index: 1;
+  }
+
+  .crater-1 { width: 14px; height: 14px; top: 18px; left: 20px; }
+  .crater-2 { width: 8px;  height: 8px;  top: 14px; left: 50px; }
+  .crater-3 { width: 10px; height: 10px; top: 42px; left: 40px; }
+  .crater-4 { width: 6px;  height: 6px;  top: 52px; left: 18px; }
+  .crater-5 { width: 7px;  height: 7px;  top: 30px; left: 60px; }
 
   .moon-shadow {
     position: absolute;
     top: 0;
+    left: 0;
     width: 80px;
     height: 80px;
     background: #4B1FD1;
     border-radius: 50%;
+    z-index: 2;
     animation: moon-phases 16s steps(1, end) infinite;
   }
 
   @keyframes moon-phases {
-    0%    { left: 0; transform: translateX(0); }
-    12.5% { left: 0; transform: translateX(20px); }
-    25%   { left: 0; transform: translateX(40px); }
-    37.5% { left: 0; transform: translateX(60px); }
-    50%   { left: 0; transform: translateX(80px); }
-    62.5% { left: 0; transform: translateX(-60px); }
-    75%   { left: 0; transform: translateX(-40px); }
-    87.5% { left: 0; transform: translateX(-20px); }
-    100%  { left: 0; transform: translateX(0); }
+    0%    { transform: translateX(0); }
+    12.5% { transform: translateX(20px); }
+    25%   { transform: translateX(40px); }
+    37.5% { transform: translateX(60px); }
+    50%   { transform: translateX(80px); }
+    62.5% { transform: translateX(-60px); }
+    75%   { transform: translateX(-40px); }
+    87.5% { transform: translateX(-20px); }
+    100%  { transform: translateX(0); }
+  }
+
+  @keyframes outline-toggle {
+    0%    { opacity: 1; }
+    12.5% { opacity: 0; }
+    25%   { opacity: 0; }
+    37.5% { opacity: 0; }
+    50%   { opacity: 1; }
+    62.5% { opacity: 0; }
+    75%   { opacity: 0; }
+    87.5% { opacity: 0; }
+    100%  { opacity: 1; }
   }
 </style>
 </head>
 <body>
 
-<div class="moon" aria-hidden="true">
-  <div class="moon-shadow"></div>
+<div class="moon-wrap" aria-hidden="true">
+  <div class="moon-outline"></div>
+  <div class="moon">
+    <div class="crater crater-1"></div>
+    <div class="crater crater-2"></div>
+    <div class="crater crater-3"></div>
+    <div class="crater crater-4"></div>
+    <div class="crater crater-5"></div>
+    <div class="moon-shadow"></div>
+  </div>
 </div>
 
 <header>
