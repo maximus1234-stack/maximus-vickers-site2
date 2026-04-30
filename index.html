@@ -116,43 +116,6 @@
     text-shadow: 0 0 8px var(--primary);
   }
 
-  /* PIXEL BUTTONS */
-  .socials {
-    display: flex;
-    gap: 0.55rem;
-  }
-
-  .pixel-btn {
-    font-family: "Press Start 2P", monospace;
-    font-size: 0.55rem;
-    letter-spacing: 0.1em;
-    color: var(--text);
-    background: var(--surface);
-    border: 2px solid var(--primary);
-    padding: 0.55rem 0.7rem;
-    text-decoration: none;
-    box-shadow: 3px 3px 0 var(--accent);
-    transition: transform 0.1s, box-shadow 0.15s, background 0.2s, color 0.2s;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.35rem;
-    image-rendering: pixelated;
-  }
-
-  .pixel-btn:hover {
-    background: var(--primary);
-    color: #fff;
-    box-shadow:
-      3px 3px 0 var(--accent),
-      0 0 18px var(--primary),
-      0 0 36px rgba(168,85,247,0.55);
-  }
-
-  .pixel-btn:active {
-    transform: translate(2px, 2px);
-    box-shadow: 1px 1px 0 var(--accent);
-  }
-
   /* HERO */
   .hero {
     display: flex;
@@ -300,123 +263,81 @@
     max-width: 30ch;
   }
 
-  /* FOURMEASURE */
-  .fm {
-    padding: 3rem 1.5rem 5rem;
+  /* DESKTOP ICONS */
+  .desktop-icons {
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 2.4rem;
+    padding: 2.5rem 1.5rem 4rem;
     scroll-margin-top: 80px;
   }
 
-  .fm-heading {
-    font-family: "Press Start 2P", monospace;
-    font-size: clamp(0.85rem, 2.4vw, 1.1rem);
-    color: var(--primary-2);
-    letter-spacing: 0.1em;
-    margin-bottom: 0.6rem;
-    text-shadow: 2px 2px 0 var(--accent);
-    text-align: center;
+  .dt-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.7rem;
+    text-decoration: none;
+    color: var(--text);
+    width: 110px;
+    padding: 0.6rem 0.4rem;
+    border: 2px dashed transparent;
+    transition: border-color 0.15s;
   }
 
-  .fm-sub {
-    font-family: "VT323", monospace;
-    color: var(--muted);
-    font-size: 1.2rem;
-    margin-bottom: 2rem;
-    letter-spacing: 0.04em;
-    text-align: center;
-  }
-
-  .song-card {
-    width: min(420px, 92vw);
-    background: var(--surface);
-    border: 3px solid var(--primary);
-    box-shadow:
-      6px 6px 0 var(--accent),
-      0 0 36px rgba(168,85,247,0.35);
-    padding: 1.4rem 1.5rem;
-  }
-
-  .song-card-bar {
+  .dt-icon-glyph {
+    width: 64px;
+    height: 64px;
     display: flex;
     align-items: center;
-    gap: 0.6rem;
+    justify-content: center;
+    background: var(--surface);
+    border: 3px solid var(--primary);
+    box-shadow: 4px 4px 0 var(--accent);
+    color: var(--primary-2);
+    transition: box-shadow 0.2s, color 0.2s, background 0.2s, transform 0.1s;
+    image-rendering: pixelated;
+  }
+
+  .dt-icon-glyph svg {
+    width: 70%;
+    height: 70%;
+    display: block;
+  }
+
+  .dt-icon-label {
     font-family: "Press Start 2P", monospace;
     font-size: 0.5rem;
-    color: var(--accent);
-    letter-spacing: 0.12em;
-    margin-bottom: 1.1rem;
-    padding-bottom: 0.7rem;
-    border-bottom: 1px dashed var(--rule);
-  }
-
-  .pulse-dot {
-    width: 8px;
-    height: 8px;
-    background: var(--accent);
-    box-shadow: 0 0 6px var(--accent);
-    animation: pulse 1s infinite step-start;
-  }
-  @keyframes pulse { 50% { opacity: 0.2; } }
-
-  .song-title {
-    font-family: "Press Start 2P", monospace;
-    font-size: 0.85rem;
-    color: var(--text);
-    letter-spacing: 0.04em;
-    margin-bottom: 0.55rem;
-  }
-
-  .song-artist {
-    font-family: "VT323", monospace;
-    font-size: 1.2rem;
     color: var(--muted);
-    letter-spacing: 0.05em;
-    margin-bottom: 1.3rem;
+    letter-spacing: 0.1em;
+    text-align: center;
+    text-transform: uppercase;
+    line-height: 1.6;
+    transition: color 0.2s, text-shadow 0.2s;
   }
 
-  .stars {
-    display: flex;
-    gap: 0.4rem;
-    margin-bottom: 1.1rem;
+  .dt-icon:hover { border-color: var(--primary); }
+
+  .dt-icon:hover .dt-icon-glyph {
+    background: var(--primary);
+    color: #fff;
+    box-shadow:
+      4px 4px 0 var(--accent),
+      0 0 20px var(--primary),
+      0 0 38px rgba(168,85,247,0.55);
   }
 
-  .star {
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 2rem;
-    color: var(--rule);
-    padding: 0;
-    line-height: 1;
-    font-family: inherit;
-    transition: color 0.15s, text-shadow 0.15s, transform 0.15s;
-  }
-
-  .star:hover { transform: scale(1.15); }
-
-  .star.active {
+  .dt-icon:hover .dt-icon-label {
     color: var(--primary-2);
-    text-shadow: 0 0 10px var(--primary);
+    text-shadow: 0 0 8px var(--primary);
   }
 
-  .rating-msg {
-    font-family: "VT323", monospace;
-    font-size: 1.15rem;
-    color: var(--accent);
-    letter-spacing: 0.04em;
-    min-height: 1.5em;
-    padding-top: 0.5rem;
-    border-top: 1px dashed var(--rule);
+  .dt-icon:active .dt-icon-glyph {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0 var(--accent);
   }
-
-  .rating-msg::before {
-    content: "> ";
-    color: var(--primary-2);
-  }
-
-  .rating-msg.empty { color: var(--muted); }
 
   /* FOOTER */
   footer {
@@ -435,14 +356,15 @@
   @media (max-width: 720px) {
     header { padding: 0.9rem 1rem; gap: 0.9rem; }
     .brand { font-size: 0.72rem; }
-    .header-right { gap: 0.9rem; width: 100%; justify-content: space-between; }
+    .header-right { gap: 0.9rem; width: 100%; justify-content: flex-start; }
     nav ul { gap: 0.85rem; }
     nav a { font-size: 0.5rem; letter-spacing: 0.08em; }
-    .pixel-btn { font-size: 0.5rem; padding: 0.42rem 0.55rem; }
     .hero { padding: 2.5rem 1rem 2rem; min-height: auto; }
     .eyebrow { font-size: 0.55rem; margin-bottom: 1.4rem; }
-    .song-card { padding: 1.1rem 1.2rem; }
-    .star { font-size: 1.7rem; }
+    .desktop-icons { gap: 1.2rem; padding: 1.5rem 1rem 3rem; }
+    .dt-icon { width: 92px; padding: 0.4rem 0.3rem; gap: 0.5rem; }
+    .dt-icon-glyph { width: 52px; height: 52px; box-shadow: 3px 3px 0 var(--accent); border-width: 2px; }
+    .dt-icon-label { font-size: 0.45rem; line-height: 1.5; }
     footer { font-size: 0.9rem; }
   }
 
@@ -465,11 +387,6 @@
         <li><a href="contact.html">Contact</a></li>
       </ul>
     </nav>
-    <div class="socials">
-      <a class="pixel-btn" href="https://instagram.com/fourmeasure" target="_blank" rel="noopener" aria-label="Instagram">IG</a>
-      <a class="pixel-btn" href="#" target="_blank" rel="noopener" aria-label="LinkedIn">LI</a>
-      <a class="pixel-btn" href="#" target="_blank" rel="noopener" aria-label="FourMeasure on the App Store">APP</a>
-    </div>
   </div>
 </header>
 
@@ -489,50 +406,55 @@
   <p class="hero-tag">Music-tech founder &middot; creator of FourMeasure</p>
 </section>
 
-<section class="fm" id="fourmeasure">
-  <h2 class="fm-heading">&#9733; TRY FOURMEASURE &#9733;</h2>
-  <p class="fm-sub">Rate a track. See where you stand.</p>
-
-  <div class="song-card">
-    <div class="song-card-bar">
-      <span class="pulse-dot"></span>
-      <span>NOW PLAYING &middot; TRACK 04</span>
-    </div>
-    <div class="song-title">Midnight Frequency</div>
-    <div class="song-artist">Echo Districts</div>
-
-    <div class="stars" role="radiogroup" aria-label="Rate this song">
-      <button class="star" data-rating="1" aria-label="1 star">&#9733;</button>
-      <button class="star" data-rating="2" aria-label="2 stars">&#9733;</button>
-      <button class="star" data-rating="3" aria-label="3 stars">&#9733;</button>
-      <button class="star" data-rating="4" aria-label="4 stars">&#9733;</button>
-      <button class="star" data-rating="5" aria-label="5 stars">&#9733;</button>
-    </div>
-
-    <div class="rating-msg empty" aria-live="polite">click a star to rate</div>
-  </div>
+<section class="desktop-icons" id="fourmeasure" aria-label="Links">
+  <a class="dt-icon" href="https://instagram.com/fourmeasure" target="_blank" rel="noopener">
+    <span class="dt-icon-glyph" aria-hidden="true">
+      <svg viewBox="0 0 14 14" shape-rendering="crispEdges" fill="currentColor">
+        <rect x="2" y="1" width="10" height="2"/>
+        <rect x="2" y="11" width="10" height="2"/>
+        <rect x="1" y="2" width="2" height="10"/>
+        <rect x="11" y="2" width="2" height="10"/>
+        <rect x="5" y="4" width="4" height="1"/>
+        <rect x="5" y="9" width="4" height="1"/>
+        <rect x="4" y="5" width="1" height="4"/>
+        <rect x="9" y="5" width="1" height="4"/>
+        <rect x="9" y="3" width="1" height="1"/>
+      </svg>
+    </span>
+    <span class="dt-icon-label">Instagram</span>
+  </a>
+  <a class="dt-icon" href="#" target="_blank" rel="noopener">
+    <span class="dt-icon-glyph" aria-hidden="true">
+      <svg viewBox="0 0 14 14" shape-rendering="crispEdges" fill="currentColor">
+        <rect x="2" y="1" width="10" height="2"/>
+        <rect x="2" y="11" width="10" height="2"/>
+        <rect x="1" y="2" width="2" height="10"/>
+        <rect x="11" y="2" width="2" height="10"/>
+        <rect x="4" y="4" width="1" height="1"/>
+        <rect x="4" y="6" width="1" height="4"/>
+        <rect x="7" y="6" width="1" height="4"/>
+        <rect x="9" y="6" width="1" height="4"/>
+        <rect x="8" y="6" width="1" height="1"/>
+      </svg>
+    </span>
+    <span class="dt-icon-label">LinkedIn</span>
+  </a>
+  <a class="dt-icon" href="#" target="_blank" rel="noopener">
+    <span class="dt-icon-glyph" aria-hidden="true">
+      <svg viewBox="0 0 14 14" shape-rendering="crispEdges" fill="currentColor">
+        <rect x="2" y="9" width="5" height="3"/>
+        <rect x="6" y="3" width="1" height="6"/>
+        <rect x="7" y="3" width="3" height="2"/>
+        <rect x="7" y="5" width="2" height="2"/>
+      </svg>
+    </span>
+    <span class="dt-icon-label">FourMeasure App</span>
+  </a>
 </section>
 
 <footer>
   &copy; 2026 Maximus Vickers &middot; made with <span class="heart">&#9829;</span> &amp; pixels
 </footer>
-
-<script>
-  (function () {
-    var stars = document.querySelectorAll('.star');
-    var msg = document.querySelector('.rating-msg');
-    var pct = { 1: 18, 2: 41, 3: 58, 4: 72, 5: 89 };
-
-    stars.forEach(function (star, i) {
-      star.addEventListener('click', function () {
-        var rating = i + 1;
-        stars.forEach(function (s, j) { s.classList.toggle('active', j < rating); });
-        msg.classList.remove('empty');
-        msg.textContent = 'You rated this higher than ' + pct[rating] + '% of listeners.';
-      });
-    });
-  })();
-</script>
 
 </body>
 </html>
