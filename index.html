@@ -137,30 +137,19 @@
     .brand { letter-spacing: 0.02em; }
     .desktop-icons { padding: 0.8rem 1rem 0.2rem; }
     footer { font-size: 0.5rem; padding: 1.2rem 1rem; }
-    .skater { width: 170px; }
   }
 
   /* SKATER */
-  .skate-floor {
-    position: fixed;
-    left: 0;
-    right: 0;
-    bottom: 45%;
-    height: 3px;
-    background: #000000;
-    pointer-events: none;
-    z-index: 4;
-  }
-
   .skater {
     position: fixed;
-    bottom: calc(45% - 20px);
-    right: -300px;
-    width: 260px;
+    bottom: 28px;
+    right: -150px;
+    width: 120px;
     pointer-events: none;
     z-index: 5;
-    mix-blend-mode: multiply;
     animation: skate-across 8s linear infinite;
+    filter: brightness(0);
+    clip-path: inset(0 0 8px 0);
   }
 
   @keyframes skate-across {
@@ -194,7 +183,6 @@
   &copy; 2026 MAXIMUS VICKERS &middot; FOURMEASURE
 </footer>
 
-<div class="skate-floor" aria-hidden="true"></div>
 <img src="skater.png" class="skater" alt="skater">
 
 </body>
