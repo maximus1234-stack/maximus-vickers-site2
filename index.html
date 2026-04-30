@@ -9,22 +9,22 @@
 <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg:        #0a0612;
-    --bg-2:      #14082a;
-    --surface:   #1a0f2e;
-    --rule:      #2a1850;
-    --primary:   #a855f7;
-    --primary-2: #c084fc;
-    --accent:    #ec4899;
-    --text:      #ece4ff;
-    --muted:     #9a85b8;
+    --bg:        #3A00C8;
+    --bg-dark:   #1f0080;
+    --bg-darker: #0d0040;
+    --light:     #6b3fe0;
+    --white:     #ffffff;
+    --ink:       #f0e8ff;
+    --black:     #000000;
+    --hot:       #ff1adb;
+    --yellow:    #fff200;
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   html, body {
     background: var(--bg);
-    color: var(--text);
+    color: var(--white);
     font-family: "VT323", "Courier New", monospace;
     font-size: 20px;
     line-height: 1.4;
@@ -32,88 +32,65 @@
     overflow-x: hidden;
   }
 
-  /* CRT scanline overlay */
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background: repeating-linear-gradient(
-      0deg,
-      rgba(0,0,0,0) 0px,
-      rgba(0,0,0,0) 2px,
-      rgba(168,85,247,0.03) 2px,
-      rgba(168,85,247,0.03) 4px
-    );
-    pointer-events: none;
-    z-index: 100;
-  }
-
-  /* Soft purple ambient gradient backdrop */
-  body::after {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background:
-      radial-gradient(ellipse at 50% 0%, rgba(168,85,247,0.18) 0%, transparent 60%),
-      radial-gradient(ellipse at 50% 100%, rgba(236,72,153,0.08) 0%, transparent 55%);
-    pointer-events: none;
-    z-index: -1;
-  }
-
   /* HEADER */
   header {
-    position: sticky;
-    top: 0;
-    z-index: 50;
+    padding: 2.4rem 1.5rem 1.4rem;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: space-between;
-    gap: 1.5rem;
-    flex-wrap: wrap;
-    padding: 1.2rem 1.8rem;
-    background: rgba(10,6,18,0.85);
-    backdrop-filter: blur(8px);
-    border-bottom: 2px solid var(--rule);
+    gap: 1.6rem;
   }
 
   .brand {
     font-family: "Press Start 2P", monospace;
-    font-size: 0.9rem;
-    color: var(--text);
+    font-size: clamp(0.95rem, 5.5vw, 2.6rem);
+    text-align: center;
+    letter-spacing: 0.04em;
+    line-height: 1;
+  }
+
+  .brand a {
+    color: var(--white);
     text-decoration: none;
-    letter-spacing: 0.06em;
     text-shadow:
-      2px 2px 0 var(--accent),
-      4px 4px 0 rgba(168,85,247,0.45);
+      0.15em 0.15em 0 var(--black),
+      0.3em 0.3em 0 var(--hot);
   }
 
-  .header-right {
-    display: flex;
-    align-items: center;
-    gap: 1.6rem;
-    flex-wrap: wrap;
-  }
-
+  /* NAV */
   nav ul {
     list-style: none;
     display: flex;
-    gap: 1.4rem;
-    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.55rem;
   }
 
-  nav a {
+  .pixel-btn {
+    display: inline-block;
     font-family: "Press Start 2P", monospace;
-    font-size: 0.6rem;
-    color: var(--muted);
+    font-size: 0.65rem;
     text-decoration: none;
+    color: var(--white);
+    background: var(--bg-dark);
+    padding: 0.7rem 1rem;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    transition: color 0.2s, text-shadow 0.2s;
+    border: 4px solid;
+    border-color: var(--light) var(--black) var(--black) var(--light);
+    cursor: pointer;
+    user-select: none;
   }
 
-  nav a:hover {
-    color: var(--primary-2);
-    text-shadow: 0 0 8px var(--primary);
+  .pixel-btn:hover {
+    background: var(--hot);
+    color: var(--black);
+    border-color: var(--white) var(--bg-darker) var(--bg-darker) var(--white);
+  }
+
+  .pixel-btn:active {
+    border-color: var(--black) var(--light) var(--light) var(--black);
+    transform: translate(1px, 1px);
   }
 
   /* HERO */
@@ -121,51 +98,25 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    padding: 3.5rem 1.5rem 2.5rem;
-    min-height: 70vh;
+    padding: 1.5rem 1.5rem 2rem;
   }
-
-  .eyebrow {
-    font-family: "Press Start 2P", monospace;
-    font-size: 0.6rem;
-    color: var(--primary-2);
-    letter-spacing: 0.22em;
-    margin-bottom: 2rem;
-    text-transform: uppercase;
-    animation: blink 1.4s infinite step-start;
-  }
-  @keyframes blink { 50% { opacity: 0.3; } }
 
   /* CD */
   .cd-stage {
     position: relative;
-    width: min(360px, 78vw);
+    width: min(340px, 80vw);
     aspect-ratio: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 2.4rem;
-  }
-
-  .cd-stage::before {
-    content: '';
-    position: absolute;
-    inset: -14%;
-    border-radius: 50%;
-    background: radial-gradient(circle at center, rgba(168,85,247,0.35) 0%, transparent 60%);
-    filter: blur(22px);
-    pointer-events: none;
+    margin-bottom: 1.6rem;
+    filter: drop-shadow(6px 6px 0 var(--black));
   }
 
   .cd {
-    position: relative;
-    width: 100%;
-    height: 100%;
+    position: absolute;
+    inset: 0;
     border-radius: 50%;
-    animation: spin 5s linear infinite;
-    filter: drop-shadow(0 0 22px rgba(168,85,247,0.55));
+    animation: spin 6s linear infinite;
   }
+
   @keyframes spin {
     from { transform: rotate(0deg); }
     to   { transform: rotate(360deg); }
@@ -175,43 +126,41 @@
     position: absolute;
     inset: 0;
     border-radius: 50%;
-    background:
-      conic-gradient(from 0deg,
-        #1a0838, #581c87, #a855f7, #ec4899, #c026d3,
-        #581c87, #2d1158, #7c3aed, #a855f7, #ec4899,
-        #c026d3, #581c87, #1a0838);
+    background: conic-gradient(from 0deg,
+      #f0e8ff 0deg 22.5deg,
+      #ff1adb 22.5deg 45deg,
+      #a855f7 45deg 67.5deg,
+      #1f0080 67.5deg 90deg,
+      #f0e8ff 90deg 112.5deg,
+      #ff1adb 112.5deg 135deg,
+      #a855f7 135deg 157.5deg,
+      #1f0080 157.5deg 180deg,
+      #f0e8ff 180deg 202.5deg,
+      #ff1adb 202.5deg 225deg,
+      #a855f7 225deg 247.5deg,
+      #1f0080 247.5deg 270deg,
+      #f0e8ff 270deg 292.5deg,
+      #ff1adb 292.5deg 315deg,
+      #a855f7 315deg 337.5deg,
+      #1f0080 337.5deg 360deg);
     box-shadow:
-      inset 0 0 50px rgba(0,0,0,0.7),
-      0 0 0 4px #2a1850,
-      0 0 0 8px #1a0f2e;
+      inset 0 0 0 4px var(--black),
+      0 0 0 4px var(--white),
+      0 0 0 8px var(--black);
   }
 
   .cd-grooves {
     position: absolute;
-    inset: 6%;
+    inset: 8%;
     border-radius: 50%;
     background:
       repeating-radial-gradient(
         circle at center,
         transparent 0,
-        transparent 3px,
-        rgba(0,0,0,0.18) 3px,
-        rgba(0,0,0,0.18) 4px
+        transparent 6px,
+        rgba(0,0,0,0.45) 6px,
+        rgba(0,0,0,0.45) 7px
       );
-    pointer-events: none;
-  }
-
-  .cd-shine {
-    position: absolute;
-    inset: 0;
-    border-radius: 50%;
-    background: linear-gradient(
-      135deg,
-      rgba(255,255,255,0.18) 0%,
-      rgba(255,255,255,0) 35%,
-      rgba(255,255,255,0) 65%,
-      rgba(255,255,255,0.08) 100%
-    );
     pointer-events: none;
   }
 
@@ -219,14 +168,14 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 32%;
-    height: 32%;
+    width: 30%;
+    height: 30%;
     transform: translate(-50%, -50%);
     border-radius: 50%;
-    background: radial-gradient(circle at 30% 30%, #c084fc, #581c87 70%, #2d1158);
+    background: var(--black);
     box-shadow:
-      inset 0 0 12px rgba(0,0,0,0.5),
-      0 0 0 2px #1a0f2e;
+      0 0 0 2px var(--white),
+      0 0 0 4px var(--black);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -234,33 +183,30 @@
 
   .cd-label-text {
     font-family: "Press Start 2P", monospace;
-    font-size: 0.55rem;
-    color: #fde9ff;
+    font-size: 0.6rem;
+    color: var(--white);
     letter-spacing: 0.05em;
-    text-shadow: 1px 1px 0 #000;
   }
 
   .cd-hole {
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 9%;
-    height: 9%;
+    width: 8%;
+    height: 8%;
     transform: translate(-50%, -50%);
     border-radius: 50%;
     background: var(--bg);
-    box-shadow:
-      inset 0 0 0 2px var(--primary-2),
-      inset 0 0 6px rgba(0,0,0,0.8);
+    box-shadow: 0 0 0 2px var(--white);
   }
 
   .hero-tag {
     font-family: "VT323", monospace;
-    font-size: 1.25rem;
-    color: var(--muted);
+    font-size: 1.2rem;
+    color: var(--ink);
     letter-spacing: 0.06em;
     text-align: center;
-    max-width: 30ch;
+    text-shadow: 2px 2px 0 var(--black);
   }
 
   /* DESKTOP ICONS */
@@ -269,9 +215,9 @@
     justify-content: center;
     align-items: flex-start;
     flex-wrap: wrap;
-    gap: 2.4rem;
-    padding: 2.5rem 1.5rem 4rem;
-    scroll-margin-top: 80px;
+    gap: 2rem;
+    padding: 1.5rem 1.5rem 3rem;
+    scroll-margin-top: 60px;
   }
 
   .dt-icon {
@@ -280,11 +226,9 @@
     align-items: center;
     gap: 0.7rem;
     text-decoration: none;
-    color: var(--text);
-    width: 110px;
-    padding: 0.6rem 0.4rem;
-    border: 2px dashed transparent;
-    transition: border-color 0.15s;
+    color: var(--white);
+    width: 100px;
+    padding: 0.4rem 0.3rem 0;
   }
 
   .dt-icon-glyph {
@@ -293,11 +237,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: var(--surface);
-    border: 3px solid var(--primary);
-    box-shadow: 4px 4px 0 var(--accent);
-    color: var(--primary-2);
-    transition: box-shadow 0.2s, color 0.2s, background 0.2s, transform 0.1s;
+    background: var(--bg-dark);
+    color: var(--white);
+    border: 4px solid;
+    border-color: var(--light) var(--black) var(--black) var(--light);
     image-rendering: pixelated;
   }
 
@@ -310,100 +253,90 @@
   .dt-icon-label {
     font-family: "Press Start 2P", monospace;
     font-size: 0.5rem;
-    color: var(--muted);
+    color: var(--white);
     letter-spacing: 0.1em;
     text-align: center;
     text-transform: uppercase;
     line-height: 1.6;
-    transition: color 0.2s, text-shadow 0.2s;
+    text-shadow: 2px 2px 0 var(--black);
+    padding: 2px 4px;
   }
 
-  .dt-icon:hover { border-color: var(--primary); }
-
   .dt-icon:hover .dt-icon-glyph {
-    background: var(--primary);
-    color: #fff;
-    box-shadow:
-      4px 4px 0 var(--accent),
-      0 0 20px var(--primary),
-      0 0 38px rgba(168,85,247,0.55);
+    background: var(--hot);
+    color: var(--black);
+    border-color: var(--white) var(--bg-darker) var(--bg-darker) var(--white);
   }
 
   .dt-icon:hover .dt-icon-label {
-    color: var(--primary-2);
-    text-shadow: 0 0 8px var(--primary);
+    background: var(--yellow);
+    color: var(--black);
+    text-shadow: none;
   }
 
   .dt-icon:active .dt-icon-glyph {
-    transform: translate(2px, 2px);
-    box-shadow: 2px 2px 0 var(--accent);
+    border-color: var(--black) var(--light) var(--light) var(--black);
+    transform: translate(1px, 1px);
   }
 
   /* FOOTER */
   footer {
-    padding: 2rem 1.5rem;
+    padding: 1.4rem 1.5rem;
     text-align: center;
-    font-family: "VT323", monospace;
-    color: var(--muted);
-    font-size: 1rem;
-    letter-spacing: 0.06em;
-    border-top: 2px solid var(--rule);
+    font-family: "Press Start 2P", monospace;
+    color: var(--white);
+    font-size: 0.55rem;
+    letter-spacing: 0.14em;
+    text-shadow: 2px 2px 0 var(--black);
+    background: var(--bg-dark);
+    border-top: 4px solid var(--black);
   }
-
-  footer .heart { color: var(--accent); }
 
   /* MOBILE */
   @media (max-width: 720px) {
-    header { padding: 0.9rem 1rem; gap: 0.9rem; }
-    .brand { font-size: 0.72rem; }
-    .header-right { gap: 0.9rem; width: 100%; justify-content: flex-start; }
-    nav ul { gap: 0.85rem; }
-    nav a { font-size: 0.5rem; letter-spacing: 0.08em; }
-    .hero { padding: 2.5rem 1rem 2rem; min-height: auto; }
-    .eyebrow { font-size: 0.55rem; margin-bottom: 1.4rem; }
-    .desktop-icons { gap: 1.2rem; padding: 1.5rem 1rem 3rem; }
-    .dt-icon { width: 92px; padding: 0.4rem 0.3rem; gap: 0.5rem; }
-    .dt-icon-glyph { width: 52px; height: 52px; box-shadow: 3px 3px 0 var(--accent); border-width: 2px; }
-    .dt-icon-label { font-size: 0.45rem; line-height: 1.5; }
-    footer { font-size: 0.9rem; }
+    header { padding: 1.5rem 1rem 1rem; gap: 1.2rem; }
+    .brand { letter-spacing: 0.02em; }
+    .pixel-btn { font-size: 0.55rem; padding: 0.6rem 0.7rem; border-width: 3px; }
+    nav ul { gap: 0.4rem; }
+    .hero { padding: 1.4rem 1rem 1.8rem; }
+    .cd-stage { width: min(280px, 78vw); filter: drop-shadow(4px 4px 0 var(--black)); }
+    .desktop-icons { gap: 1.2rem; padding: 1rem 1rem 2rem; }
+    .dt-icon { width: 88px; }
+    .dt-icon-glyph { width: 56px; height: 56px; border-width: 3px; }
+    .dt-icon-label { font-size: 0.45rem; }
+    footer { font-size: 0.5rem; padding: 1.2rem 1rem; }
   }
 
-  @media (max-width: 420px) {
-    nav ul { gap: 0.6rem; }
-    nav a { font-size: 0.45rem; }
+  @media (max-width: 380px) {
+    .pixel-btn { font-size: 0.5rem; padding: 0.5rem 0.6rem; }
+    nav ul { gap: 0.35rem; }
   }
 </style>
 </head>
 <body>
 
 <header>
-  <a class="brand" href="index.html">MAXIMUS VICKERS</a>
-  <div class="header-right">
-    <nav>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="#fourmeasure">FourMeasure</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </nav>
-  </div>
+  <h1 class="brand"><a href="index.html">MAXIMUS VICKERS</a></h1>
+  <nav>
+    <ul>
+      <li><a class="pixel-btn" href="index.html">Home</a></li>
+      <li><a class="pixel-btn" href="about.html">About</a></li>
+      <li><a class="pixel-btn" href="#fourmeasure">FourMeasure</a></li>
+      <li><a class="pixel-btn" href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
 </header>
 
 <section class="hero">
-  <div class="eyebrow">&#9654; NOW SPINNING</div>
-
   <div class="cd-stage" aria-hidden="true">
     <div class="cd">
       <div class="cd-disc"></div>
       <div class="cd-grooves"></div>
-      <div class="cd-shine"></div>
       <div class="cd-label"><div class="cd-label-text">4M</div></div>
       <div class="cd-hole"></div>
     </div>
   </div>
-
-  <p class="hero-tag">Music-tech founder &middot; creator of FourMeasure</p>
+  <p class="hero-tag">music-tech founder &middot; creator of FourMeasure</p>
 </section>
 
 <section class="desktop-icons" id="fourmeasure" aria-label="Links">
@@ -453,7 +386,7 @@
 </section>
 
 <footer>
-  &copy; 2026 Maximus Vickers &middot; made with <span class="heart">&#9829;</span> &amp; pixels
+  &copy; 2026 MAXIMUS VICKERS &middot; FOURMEASURE
 </footer>
 
 </body>
