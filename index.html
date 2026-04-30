@@ -328,7 +328,8 @@
     image-rendering: pixelated;
     image-rendering: -moz-crisp-edges;
     image-rendering: crisp-edges;
-    filter: invert(1) contrast(1.5);
+    filter: brightness(0) invert(1);
+    mix-blend-mode: screen;
     transform: scale(1.1);
     transform-origin: bottom center;
   }
@@ -341,6 +342,49 @@
   .pine-1 { right: 6%;  height: 160px; }
   .pine-2 { right: 38%; height: 130px; }
   .pine-3 { right: 70%; height: 145px; }
+
+  @media (max-width: 768px) {
+    .trees-left {
+      width: 50%;
+    }
+    .trees-right {
+      width: 50%;
+    }
+
+    /* On mobile: only show 1 palm and 1 pine, hide the rest */
+    .palm-2 {
+      display: none;
+    }
+    .pine-2,
+    .pine-3 {
+      display: none;
+    }
+
+    /* Reposition the visible trees to the screen edges */
+    .palm-1 {
+      left: 8%;
+      height: 110px;
+    }
+    .pine-1 {
+      right: 8%;
+      height: 120px;
+    }
+
+    /* Move the moon up a bit so it doesn't crowd the skater on small screens */
+    .moon-wrap {
+      top: 140px;
+      width: 60px;
+      height: 60px;
+    }
+    .moon, .moon-shadow {
+      width: 60px;
+      height: 60px;
+    }
+    .moon-outline {
+      width: 66px;
+      height: 66px;
+    }
+  }
 </style>
 </head>
 <body>
