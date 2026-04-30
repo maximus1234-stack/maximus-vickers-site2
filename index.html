@@ -144,7 +144,7 @@
     position: fixed;
     left: 0;
     right: 0;
-    top: calc(50% + 60px);
+    top: calc(50% + 90px);
     height: 2px;
     background: #FFFFFF;
     pointer-events: none;
@@ -153,10 +153,10 @@
 
   .skater {
     position: fixed;
-    top: calc(50% - 60px);
+    top: calc(50% - 90px);
     right: -200px;
-    width: 144px;
-    height: 120px;
+    width: 162px;
+    height: 180px;
     pointer-events: none;
     z-index: 5;
     animation: skate-across 8s linear infinite;
@@ -194,30 +194,34 @@
 </footer>
 
 <div class="ground-line" aria-hidden="true"></div>
-<svg class="skater" viewBox="0 0 60 50" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+<svg class="skater" viewBox="0 0 90 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
   <g fill="#FFFFFF">
-    <!-- Headphone band over the head -->
-    <path d="M20 11 Q26 5 32 11 L32 14 Q26 9 20 14 Z"/>
+    <!-- Headphone band (thick curved arc over the head) -->
+    <path d="M 32 18 Q 45 4 58 18 L 58 22 Q 45 10 32 22 Z"/>
     <!-- Head -->
-    <circle cx="26" cy="14" r="5"/>
-    <!-- Headphone ear cups -->
-    <rect x="19" y="12" width="3" height="5" rx="1.5"/>
-    <rect x="30" y="12" width="3" height="5" rx="1.5"/>
-    <!-- Torso (slight forward lean) -->
-    <path d="M24 19 L22 31 L26 31 L28 19 Z"/>
-    <!-- Back arm (counterbalance, raised) -->
-    <path d="M27 21 L37 18 L38 20 L28 23 Z"/>
+    <circle cx="45" cy="22" r="10"/>
+    <!-- Headphone ear pads -->
+    <circle cx="32" cy="25" r="5"/>
+    <circle cx="58" cy="25" r="5"/>
+    <!-- Torso (leaning slightly forward) -->
+    <path d="M 39 32 L 51 32 L 46 60 L 34 60 Z"/>
     <!-- Front arm (extended forward for balance) -->
-    <path d="M23 21 L13 27 L14 29 L24 23 Z"/>
-    <!-- Front leg planted on board -->
-    <path d="M22 30 L18 41 L22 42 L26 31 Z"/>
-    <!-- Back leg bent, pushing off -->
-    <path d="M27 30 L36 37 L38 39 L30 32 Z"/>
-    <!-- Skateboard deck -->
-    <rect x="14" y="42" width="32" height="3" rx="1.5"/>
+    <path d="M 38 34 L 18 46 L 22 51 L 42 39 Z"/>
+    <!-- Back arm (extended back for balance) -->
+    <path d="M 52 34 L 72 24 L 75 29 L 54 39 Z"/>
+    <!-- Front leg thigh (knee bent forward) -->
+    <path d="M 34 60 L 40 60 L 33 75 L 28 75 Z"/>
+    <!-- Front leg shin (foot planted on board) -->
+    <path d="M 28 75 L 33 75 L 40 88 L 35 88 Z"/>
+    <!-- Back leg thigh (knee bent backward) -->
+    <path d="M 46 60 L 50 60 L 56 75 L 52 75 Z"/>
+    <!-- Back leg shin (foot kicking back) -->
+    <path d="M 52 75 L 56 75 L 70 80 L 66 84 Z"/>
+    <!-- Skateboard deck (wider than the figure's feet) -->
+    <rect x="22" y="88" width="48" height="4" rx="2"/>
     <!-- Wheels -->
-    <circle cx="18" cy="47.5" r="2.5"/>
-    <circle cx="42" cy="47.5" r="2.5"/>
+    <circle cx="30" cy="97" r="3"/>
+    <circle cx="62" cy="97" r="3"/>
   </g>
 </svg>
 
