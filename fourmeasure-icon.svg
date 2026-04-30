@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 16 16"
+     width="1024" height="1024"
+     shape-rendering="crispEdges"
+     role="img"
+     aria-label="FourMeasure app icon">
+  <defs>
+    <linearGradient id="fmBg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"   stop-color="#7c3aed"/>
+      <stop offset="55%"  stop-color="#4a14d8"/>
+      <stop offset="100%" stop-color="#22008a"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Outer black pixel frame with subtly rounded corners -->
+  <rect width="16" height="16" fill="#000000" rx="1" ry="1"/>
+
+  <!-- Purple gradient interior -->
+  <rect x="1" y="1" width="14" height="14" fill="url(#fmBg)"/>
+
+  <!-- Subtle inner pixel highlight (1px top + left) for chunky depth -->
+  <g fill="#ffffff" opacity="0.18">
+    <rect x="1" y="1" width="14" height="1"/>
+    <rect x="1" y="1" width="1"  height="14"/>
+  </g>
+
+  <!-- Subtle inner pixel shadow (1px bottom + right) -->
+  <g fill="#000000" opacity="0.28">
+    <rect x="1"  y="14" width="14" height="1"/>
+    <rect x="14" y="1"  width="1"  height="14"/>
+  </g>
+
+  <!-- White "f" + music note logomark -->
+  <g fill="#ffffff">
+    <!-- Stem -->
+    <rect x="7" y="2" width="2" height="9"/>
+    <!-- Top flag (right curl) -->
+    <rect x="9"  y="2" width="3" height="1"/>
+    <rect x="11" y="3" width="2" height="2"/>
+    <!-- Crossbar -->
+    <rect x="5" y="6" width="6" height="2"/>
+    <!-- Note head (blocky oval) -->
+    <rect x="3" y="11" width="6" height="1"/>
+    <rect x="2" y="12" width="7" height="2"/>
+    <rect x="3" y="14" width="6" height="1"/>
+  </g>
+</svg>
