@@ -9,7 +9,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg:        #3A00C8;
+    --bg:        #4B1FD1;
     --bg-dark:   #1f0080;
     --bg-darker: #0d0040;
     --light:     #6b3fe0;
@@ -23,7 +23,8 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   html, body {
-    background: var(--bg);
+    background: none;
+    background-color: var(--bg);
     color: var(--white);
     font-family: "VT323", "Courier New", monospace;
     font-size: 20px;
@@ -55,102 +56,8 @@
   }
 
   .brand a {
-    color: var(--white);
+    color: #FFFFFF;
     text-decoration: none;
-    text-shadow: 0.15em 0.15em 0 var(--black);
-  }
-
-  /* HERO */
-  .hero {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    flex: 1;
-    padding: 1.5rem 1.5rem 2rem;
-  }
-
-  /* CD */
-  .cd-stage {
-    position: relative;
-    width: min(340px, 80vw);
-    aspect-ratio: 1;
-    filter: drop-shadow(6px 6px 0 var(--black));
-  }
-
-  .cd {
-    position: absolute;
-    inset: 0;
-    border-radius: 50%;
-    animation: spin 6s linear infinite;
-  }
-
-  @keyframes spin {
-    from { transform: rotate(0deg); }
-    to   { transform: rotate(360deg); }
-  }
-
-  .cd-disc {
-    position: absolute;
-    inset: 0;
-    border-radius: 50%;
-    background: conic-gradient(from 0deg,
-      #ffffff 0deg 30deg,
-      #b3e0ff 30deg 60deg,
-      #c9a7ff 60deg 90deg,
-      #ffb6d4 90deg 120deg,
-      #fff48a 120deg 150deg,
-      #8eedf3 150deg 180deg,
-      #ffffff 180deg 210deg,
-      #b3e0ff 210deg 240deg,
-      #c9a7ff 240deg 270deg,
-      #ffb6d4 270deg 300deg,
-      #fff48a 300deg 330deg,
-      #8eedf3 330deg 360deg);
-    box-shadow:
-      inset 0 0 0 3px rgba(0,0,0,0.35),
-      0 0 0 4px var(--black);
-  }
-
-  .cd-grooves {
-    position: absolute;
-    inset: 8%;
-    border-radius: 50%;
-    background:
-      repeating-radial-gradient(
-        circle at center,
-        transparent 0,
-        transparent 6px,
-        rgba(0,0,0,0.18) 6px,
-        rgba(0,0,0,0.18) 7px
-      );
-    pointer-events: none;
-  }
-
-  .cd-label {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 26%;
-    height: 26%;
-    transform: translate(-50%, -50%);
-    border-radius: 50%;
-    background: #c0c0c0;
-    box-shadow:
-      inset 0 0 0 2px #8a8a8a,
-      0 0 0 2px var(--black);
-  }
-
-  .cd-hole {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 8%;
-    height: 8%;
-    transform: translate(-50%, -50%);
-    border-radius: 50%;
-    background: var(--white);
-    box-shadow: 0 0 0 2px var(--black);
   }
 
   /* DESKTOP ICONS */
@@ -158,6 +65,7 @@
     display: flex;
     justify-content: center;
     padding: 1rem 1.5rem 0.8rem;
+    margin-top: auto;
     scroll-margin-top: 60px;
   }
 
@@ -197,7 +105,8 @@
     font-size: 0.55rem;
     letter-spacing: 0.14em;
     text-shadow: 2px 2px 0 var(--black);
-    background: var(--bg);
+    background: none;
+    background-color: var(--bg);
     border-top: 4px solid var(--black);
   }
 
@@ -205,8 +114,6 @@
   @media (max-width: 720px) {
     header { padding: 1.5rem 1rem 1rem; }
     .brand { letter-spacing: 0.02em; }
-    .hero { padding: 1.4rem 1rem 1.8rem; }
-    .cd-stage { width: min(280px, 78vw); filter: drop-shadow(4px 4px 0 var(--black)); }
     .desktop-icons { padding: 0.8rem 1rem 0.6rem; }
     footer { font-size: 0.5rem; padding: 1.2rem 1rem; }
   }
@@ -217,17 +124,6 @@
 <header>
   <h1 class="brand"><a href="index.html">MAXIMUS VICKERS</a></h1>
 </header>
-
-<section class="hero">
-  <div class="cd-stage" aria-hidden="true">
-    <div class="cd">
-      <div class="cd-disc"></div>
-      <div class="cd-grooves"></div>
-      <div class="cd-label"></div>
-      <div class="cd-hole"></div>
-    </div>
-  </div>
-</section>
 
 <section class="desktop-icons" id="fourmeasure" aria-label="Links">
   <div class="icons-img-wrap">
