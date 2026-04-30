@@ -157,71 +157,35 @@
   .desktop-icons {
     display: flex;
     justify-content: center;
-    align-items: flex-start;
-    flex-wrap: wrap;
-    gap: 2rem;
     padding: 1.5rem 1.5rem 3rem;
     scroll-margin-top: 60px;
   }
 
-  .dt-icon {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.7rem;
-    text-decoration: none;
-    color: var(--white);
-    width: 100px;
-    padding: 0.4rem 0.3rem 0;
+  .icons-img-wrap {
+    position: relative;
+    width: 100%;
+    max-width: 480px;
+    line-height: 0;
   }
 
-  .dt-icon-glyph {
-    width: 64px;
-    height: 64px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--bg-dark);
-    color: var(--white);
-    border: 4px solid;
-    border-color: var(--light) var(--black) var(--black) var(--light);
-    image-rendering: pixelated;
-  }
-
-  .dt-icon-glyph svg {
-    width: 70%;
-    height: 70%;
+  .icons-img-wrap img {
     display: block;
+    width: 100%;
+    height: auto;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
   }
 
-  .dt-icon-label {
-    font-family: "Press Start 2P", monospace;
-    font-size: 0.5rem;
-    color: var(--white);
-    letter-spacing: 0.1em;
-    text-align: center;
-    text-transform: uppercase;
-    line-height: 1.6;
-    text-shadow: 2px 2px 0 var(--black);
-    padding: 2px 4px;
+  .icon-link {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 33.3333%;
   }
 
-  .dt-icon:hover .dt-icon-glyph {
-    background: var(--hot);
-    color: var(--black);
-    border-color: var(--white) var(--bg-darker) var(--bg-darker) var(--white);
-  }
-
-  .dt-icon:hover .dt-icon-label {
-    background: var(--yellow);
-    color: var(--black);
-    text-shadow: none;
-  }
-
-  .dt-icon:active .dt-icon-glyph {
-    border-color: var(--black) var(--light) var(--light) var(--black);
-    transform: translate(1px, 1px);
-  }
+  .icon-link.l-ig  { left: 0; }
+  .icon-link.l-li  { left: 33.3333%; }
+  .icon-link.l-app { left: 66.6666%; }
 
   /* FOOTER */
   footer {
@@ -242,10 +206,7 @@
     .brand { letter-spacing: 0.02em; }
     .hero { padding: 1.4rem 1rem 1.8rem; }
     .cd-stage { width: min(280px, 78vw); filter: drop-shadow(4px 4px 0 var(--black)); }
-    .desktop-icons { gap: 1.2rem; padding: 1rem 1rem 2rem; }
-    .dt-icon { width: 88px; }
-    .dt-icon-glyph { width: 56px; height: 56px; border-width: 3px; }
-    .dt-icon-label { font-size: 0.45rem; }
+    .desktop-icons { padding: 1rem 1rem 2rem; }
     footer { font-size: 0.5rem; padding: 1.2rem 1rem; }
   }
 </style>
@@ -268,49 +229,12 @@
 </section>
 
 <section class="desktop-icons" id="fourmeasure" aria-label="Links">
-  <a class="dt-icon" href="https://www.instagram.com/maximussss__/" target="_blank" rel="noopener noreferrer">
-    <span class="dt-icon-glyph" aria-hidden="true">
-      <svg viewBox="0 0 14 14" shape-rendering="crispEdges" fill="currentColor">
-        <rect x="2" y="1" width="10" height="2"/>
-        <rect x="2" y="11" width="10" height="2"/>
-        <rect x="1" y="2" width="2" height="10"/>
-        <rect x="11" y="2" width="2" height="10"/>
-        <rect x="5" y="4" width="4" height="1"/>
-        <rect x="5" y="9" width="4" height="1"/>
-        <rect x="4" y="5" width="1" height="4"/>
-        <rect x="9" y="5" width="1" height="4"/>
-        <rect x="9" y="3" width="1" height="1"/>
-      </svg>
-    </span>
-    <span class="dt-icon-label">Instagram</span>
-  </a>
-  <a class="dt-icon" href="https://www.linkedin.com/in/maximus-vickers-bb69672b1" target="_blank" rel="noopener noreferrer">
-    <span class="dt-icon-glyph" aria-hidden="true">
-      <svg viewBox="0 0 14 14" shape-rendering="crispEdges" fill="currentColor">
-        <rect x="2" y="1" width="10" height="2"/>
-        <rect x="2" y="11" width="10" height="2"/>
-        <rect x="1" y="2" width="2" height="10"/>
-        <rect x="11" y="2" width="2" height="10"/>
-        <rect x="4" y="4" width="1" height="1"/>
-        <rect x="4" y="6" width="1" height="4"/>
-        <rect x="7" y="6" width="1" height="4"/>
-        <rect x="9" y="6" width="1" height="4"/>
-        <rect x="8" y="6" width="1" height="1"/>
-      </svg>
-    </span>
-    <span class="dt-icon-label">LinkedIn</span>
-  </a>
-  <a class="dt-icon" href="https://apps.apple.com/us/app/fourmeasure/id6754608076" target="_blank" rel="noopener noreferrer">
-    <span class="dt-icon-glyph" aria-hidden="true">
-      <svg viewBox="0 0 14 14" shape-rendering="crispEdges" fill="currentColor">
-        <rect x="2" y="9" width="5" height="3"/>
-        <rect x="6" y="3" width="1" height="6"/>
-        <rect x="7" y="3" width="3" height="2"/>
-        <rect x="7" y="5" width="2" height="2"/>
-      </svg>
-    </span>
-    <span class="dt-icon-label">FourMeasure App</span>
-  </a>
+  <div class="icons-img-wrap">
+    <img src="desktop-icons.png" alt="Instagram, LinkedIn, and FourMeasure App icons">
+    <a class="icon-link l-ig"  href="https://www.instagram.com/maximussss__/"                        target="_blank" rel="noopener noreferrer" aria-label="Instagram"></a>
+    <a class="icon-link l-li"  href="https://www.linkedin.com/in/maximus-vickers-bb69672b1"          target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"></a>
+    <a class="icon-link l-app" href="https://apps.apple.com/us/app/fourmeasure/id6754608076"        target="_blank" rel="noopener noreferrer" aria-label="FourMeasure App"></a>
+  </div>
 </section>
 
 <footer>
