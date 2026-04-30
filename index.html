@@ -217,9 +217,52 @@
       opacity: 0;
     }
   }
+
+  .moon {
+    position: fixed;
+    top: 60px;
+    right: 80px;
+    width: 80px;
+    height: 80px;
+    background: white;
+    border-radius: 50%;
+    overflow: hidden;
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+    box-shadow: 0 0 0 2px white;
+    filter: contrast(1.2);
+    z-index: 5;
+  }
+
+  .moon-shadow {
+    position: absolute;
+    top: 0;
+    width: 80px;
+    height: 80px;
+    background: #4B1FD1;
+    border-radius: 50%;
+    animation: moon-phases 16s steps(1, end) infinite;
+  }
+
+  @keyframes moon-phases {
+    0%    { left: 0; transform: translateX(0); }
+    12.5% { left: 0; transform: translateX(20px); }
+    25%   { left: 0; transform: translateX(40px); }
+    37.5% { left: 0; transform: translateX(60px); }
+    50%   { left: 0; transform: translateX(80px); }
+    62.5% { left: 0; transform: translateX(-60px); }
+    75%   { left: 0; transform: translateX(-40px); }
+    87.5% { left: 0; transform: translateX(-20px); }
+    100%  { left: 0; transform: translateX(0); }
+  }
 </style>
 </head>
 <body>
+
+<div class="moon" aria-hidden="true">
+  <div class="moon-shadow"></div>
+</div>
 
 <header>
   <h1 class="brand"><a href="index.html">MAXIMUS VICKERS</a></h1>
