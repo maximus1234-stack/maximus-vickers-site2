@@ -308,6 +308,8 @@
     height: 0;
     z-index: 1;
     pointer-events: none;
+    mix-blend-mode: normal;
+    isolation: auto;
   }
 
   .trees-left {
@@ -327,8 +329,9 @@
     image-rendering: pixelated;
     image-rendering: -moz-crisp-edges;
     image-rendering: crisp-edges;
-    mix-blend-mode: multiply;
     filter: invert(1);
+    mix-blend-mode: screen;
+    isolation: auto;
   }
 
   /* Palm trees on left - irregular spacing, varied size */
