@@ -91,11 +91,23 @@
     top: 0;
     height: 100%;
     width: 33.3333%;
+    cursor: pointer;
+    transition: transform 0.12s ease, box-shadow 0.12s ease;
   }
 
   .icon-link.l-ig  { left: 0; }
   .icon-link.l-li  { left: 33.3333%; }
   .icon-link.l-app { left: 66.6666%; }
+
+  .icon-link:hover {
+    transform: scale(1.08);
+    box-shadow: 0 0 0 2px #FFFFFF, 0 0 8px rgba(255,255,255,0.6);
+  }
+
+  .icon-link:active {
+    transform: translateY(2px) scale(0.95);
+    box-shadow: 0 0 0 1px #FFFFFF inset;
+  }
 
   /* FOOTER */
   footer {
