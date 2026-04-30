@@ -140,6 +140,17 @@
   }
 
   /* SKATER */
+  .ground-line {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: calc(50% + 139.5px);
+    height: 2px;
+    background: #FFFFFF;
+    pointer-events: none;
+    z-index: 4;
+  }
+
   .skater {
     position: fixed;
     top: calc(50% - 139.5px);
@@ -182,6 +193,7 @@
   &copy; 2026 MAXIMUS VICKERS &middot; FOURMEASURE
 </footer>
 
+<div class="ground-line" aria-hidden="true"></div>
 <svg class="skater" viewBox="0 0 18 14" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
   <g fill="#FFFFFF">
     <rect x="8" y="0" width="3" height="1"/>
