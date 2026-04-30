@@ -157,35 +157,40 @@
   .desktop-icons {
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
+    gap: 2rem;
     padding: 1.5rem 1.5rem 3rem;
     scroll-margin-top: 60px;
   }
 
-  .icons-img-wrap {
-    position: relative;
-    width: 100%;
-    max-width: 480px;
-    line-height: 0;
+  .dt-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.7rem;
+    text-decoration: none;
+    color: var(--white);
+    width: 100px;
   }
 
-  .icons-img-wrap img {
+  .dt-icon-img {
+    width: 64px;
+    height: 64px;
     display: block;
-    width: 100%;
-    height: auto;
     image-rendering: pixelated;
     image-rendering: crisp-edges;
   }
 
-  .icon-link {
-    position: absolute;
-    top: 0;
-    height: 100%;
-    width: 33.3333%;
+  .dt-icon-label {
+    font-family: "Press Start 2P", monospace;
+    font-size: 0.5rem;
+    color: var(--white);
+    letter-spacing: 0.1em;
+    text-align: center;
+    text-transform: uppercase;
+    line-height: 1.6;
+    text-shadow: 2px 2px 0 var(--black);
   }
-
-  .icon-link.l-ig  { left: 0; }
-  .icon-link.l-li  { left: 33.3333%; }
-  .icon-link.l-app { left: 66.6666%; }
 
   /* FOOTER */
   footer {
@@ -206,7 +211,10 @@
     .brand { letter-spacing: 0.02em; }
     .hero { padding: 1.4rem 1rem 1.8rem; }
     .cd-stage { width: min(280px, 78vw); filter: drop-shadow(4px 4px 0 var(--black)); }
-    .desktop-icons { padding: 1rem 1rem 2rem; }
+    .desktop-icons { gap: 1.2rem; padding: 1rem 1rem 2rem; }
+    .dt-icon { width: 88px; }
+    .dt-icon-img { width: 56px; height: 56px; }
+    .dt-icon-label { font-size: 0.45rem; }
     footer { font-size: 0.5rem; padding: 1.2rem 1rem; }
   }
 </style>
@@ -229,12 +237,18 @@
 </section>
 
 <section class="desktop-icons" id="fourmeasure" aria-label="Links">
-  <div class="icons-img-wrap">
-    <img src="desktop-icons.png" alt="Instagram, LinkedIn, and FourMeasure App icons">
-    <a class="icon-link l-ig"  href="https://www.instagram.com/maximussss__/"                        target="_blank" rel="noopener noreferrer" aria-label="Instagram"></a>
-    <a class="icon-link l-li"  href="https://www.linkedin.com/in/maximus-vickers-bb69672b1"          target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"></a>
-    <a class="icon-link l-app" href="https://apps.apple.com/us/app/fourmeasure/id6754608076"        target="_blank" rel="noopener noreferrer" aria-label="FourMeasure App"></a>
-  </div>
+  <a class="dt-icon" href="https://www.instagram.com/maximussss__/" target="_blank" rel="noopener noreferrer">
+    <img class="dt-icon-img" src="instagram-icon.png" alt="">
+    <span class="dt-icon-label">Instagram</span>
+  </a>
+  <a class="dt-icon" href="https://www.linkedin.com/in/maximus-vickers-bb69672b1" target="_blank" rel="noopener noreferrer">
+    <img class="dt-icon-img" src="linkedin-icon.png" alt="">
+    <span class="dt-icon-label">LinkedIn</span>
+  </a>
+  <a class="dt-icon" href="https://apps.apple.com/us/app/fourmeasure/id6754608076" target="_blank" rel="noopener noreferrer">
+    <img class="dt-icon-img" src="fourmeasure-icon.png" alt="">
+    <span class="dt-icon-label">FourMeasure App</span>
+  </a>
 </section>
 
 <footer>
