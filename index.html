@@ -138,6 +138,22 @@
     .desktop-icons { padding: 0.8rem 1rem 0.2rem; }
     footer { font-size: 0.5rem; padding: 1.2rem 1rem; }
   }
+
+  /* SKATER */
+  .skater {
+    position: fixed;
+    bottom: 120px;
+    right: -150px;
+    width: 120px;
+    pointer-events: none;
+    z-index: 5;
+    animation: skate-across 8s linear infinite;
+  }
+
+  @keyframes skate-across {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-120vw); }
+  }
 </style>
 </head>
 <body>
@@ -164,6 +180,8 @@
 <footer>
   &copy; 2026 MAXIMUS VICKERS &middot; FOURMEASURE
 </footer>
+
+<img src="skater.png" class="skater" alt="skater">
 
 </body>
 </html>
