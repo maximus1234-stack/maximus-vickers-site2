@@ -322,7 +322,6 @@
 
   .tree {
     position: absolute;
-    bottom: -40px;
     width: auto;
     image-rendering: pixelated;
     image-rendering: -moz-crisp-edges;
@@ -333,13 +332,13 @@
   }
 
   /* Palm trees on left - irregular spacing, varied size */
-  .palm-1 { left: 8%;  height: 150px; }
-  .palm-2 { left: 55%; height: 130px; }
+  .palm-1 { left: 8%;  height: 150px; bottom: -40px; }
+  .palm-2 { left: 55%; height: 130px; bottom: -40px; }
 
   /* Pine trees on right - irregular spacing, varied size */
-  .pine-1 { right: 6%;  height: 160px; }
-  .pine-2 { right: 38%; height: 130px; }
-  .pine-3 { right: 70%; height: 145px; }
+  .pine-1 { right: 6%;  height: 160px; bottom: -55px; }
+  .pine-2 { right: 38%; height: 130px; bottom: -55px; }
+  .pine-3 { right: 70%; height: 145px; bottom: -55px; }
 
   @media (max-width: 768px) {
     .trees-left {
@@ -362,10 +361,12 @@
     .palm-1 {
       left: 8%;
       height: 110px;
+      bottom: -30px;
     }
     .pine-1 {
       right: 8%;
       height: 120px;
+      bottom: -45px;
     }
 
     /* Move the moon up a bit so it doesn't crowd the skater on small screens */
