@@ -225,8 +225,9 @@
   .moon-wrap {
     position: fixed;
     top: 180px;
-    left: 50%;
-    transform: translateX(-50%);
+    left: auto;
+    right: 18%;
+    transform: none;
     width: 80px;
     height: 80px;
     z-index: 5;
@@ -336,6 +337,9 @@
     /* Move the moon up a bit so it doesn't crowd the skater on small screens */
     .moon-wrap {
       top: 140px;
+      right: 12%;
+      left: auto;
+      transform: none;
       width: 60px;
       height: 60px;
     }
@@ -571,7 +575,7 @@
   }
 
   .mountains-back {
-    top: calc(50% + 5px);
+    top: calc(50% + 90px - 110px);
     height: 110px;
     opacity: 0.55;
   }
@@ -585,7 +589,7 @@
   }
 
   .mountains-front {
-    top: calc(50% + 25px);
+    top: calc(50% + 90px - 130px);
     height: 130px;
     opacity: 0.85;
   }
@@ -600,11 +604,11 @@
 
   @media (max-width: 768px) {
     .mountains-back {
-      top: calc(50% + 5px);
+      top: calc(50% + 90px - 80px);
       height: 80px;
     }
     .mountains-front {
-      top: calc(50% + 25px);
+      top: calc(50% + 90px - 95px);
       height: 95px;
     }
   }
@@ -613,25 +617,20 @@
 <body>
 
 <svg class="mountains mountains-back" viewBox="0 0 1200 200" preserveAspectRatio="none" aria-hidden="true">
-  <!-- Back range mountain bodies -->
-  <polygon class="peak-body" points="0,200 60,80 110,130 180,40 250,110 310,70 380,20 450,90 520,50 590,100 660,30 730,85 800,55 870,15 940,75 1010,45 1080,95 1150,35 1200,80 1200,200" />
-  <!-- Back range snow caps -->
-  <polygon class="snow-cap" points="170,50 180,40 190,52 250,110 240,118 230,108 195,75 188,68 180,72 175,68 170,72" />
-  <polygon class="snow-cap" points="370,32 380,20 392,35 450,90 442,98 432,88 405,62 395,55 386,60 378,52 370,48" />
-  <polygon class="snow-cap" points="582,62 590,50 600,65 660,30 668,42 660,52 625,80 615,75 602,80 592,72 585,72" />
-  <polygon class="snow-cap" points="788,30 800,15 815,32 870,75 860,85 850,75 825,55 815,48 805,52 795,48 790,42" />
-  <polygon class="snow-cap" points="1000,55 1010,45 1022,60 1080,95 1070,105 1060,95 1035,75 1025,68 1015,72 1005,68 1000,68" />
+  <polygon class="peak-body" points="0,200 90,30 130,140 220,10 290,150 360,40 440,5 520,130 600,50 680,15 770,135 850,25 930,5 1010,120 1090,40 1170,20 1200,90 1200,200" />
+  <polygon class="snow-cap" points="208,40 220,10 234,42 260,75 248,72 232,55 222,42 215,52 210,48" />
+  <polygon class="snow-cap" points="430,30 440,5 452,32 480,70 466,68 452,52 444,40 436,48" />
+  <polygon class="snow-cap" points="668,40 680,15 694,42 720,75 706,72 692,55 682,42 674,52" />
+  <polygon class="snow-cap" points="918,30 930,5 944,32 972,70 958,68 944,52 934,40 926,48" />
 </svg>
 
 <svg class="mountains mountains-front" viewBox="0 0 1200 200" preserveAspectRatio="none" aria-hidden="true">
-  <!-- Front range mountain bodies -->
-  <polygon class="peak-body" points="0,200 80,50 150,120 230,10 320,90 400,40 480,110 560,5 650,80 730,30 820,100 900,15 990,75 1070,25 1160,90 1200,55 1200,200" />
-  <!-- Front range snow caps -->
-  <polygon class="snow-cap" points="218,30 230,10 245,32 320,90 308,100 295,90 260,55 248,48 238,52 228,48 220,42" />
-  <polygon class="snow-cap" points="468,30 480,15 495,35 560,80 548,90 538,80 510,55 498,48 488,52 478,48 470,42" />
-  <polygon class="snow-cap" points="640,55 650,42 663,62 730,100 720,108 710,98 685,75 675,68 665,72 655,68 645,68" />
-  <polygon class="snow-cap" points="888,32 900,15 915,35 990,80 980,90 968,80 935,52 925,45 915,50 905,45 895,40" />
-  <polygon class="snow-cap" points="1058,42 1070,25 1085,45 1160,90 1148,100 1138,90 1108,62 1098,55 1088,60 1078,55 1068,52" />
+  <polygon class="peak-body" points="0,200 60,40 130,160 230,0 320,150 400,30 490,170 570,5 670,140 750,20 850,160 930,10 1020,135 1100,25 1180,150 1200,80 1200,200" />
+  <polygon class="snow-cap" points="216,30 230,0 246,32 276,70 260,68 246,52 234,40 224,48 218,42" />
+  <polygon class="snow-cap" points="476,35 490,5 508,40 540,80 524,78 508,60 494,45 484,52 478,46" />
+  <polygon class="snow-cap" points="654,40 670,15 688,45 720,85 702,82 686,62 672,48 660,55 656,48" />
+  <polygon class="snow-cap" points="916,40 930,10 948,42 980,82 962,80 946,60 932,45 922,52 918,46" />
+  <polygon class="snow-cap" points="1166,180 1180,150 1196,182 1200,200 1180,200 1175,195 1168,188" />
 </svg>
 
 <div class="sticky-note" aria-hidden="true">
