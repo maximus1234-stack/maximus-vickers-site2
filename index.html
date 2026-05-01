@@ -169,9 +169,9 @@
     position: absolute;
     bottom: 0;
     left: 0;
-    height: 180px;
+    height: 110px;
     width: auto;
-    transform: translateY(20px);
+    transform: translateY(12px);
     mix-blend-mode: lighten;
     filter: invert(1);
     image-rendering: pixelated;
@@ -186,8 +186,8 @@
 
   .notes {
     position: absolute;
-    bottom: 145px;
-    left: 80px;
+    bottom: 90px;
+    left: 50px;
     width: 0;
     height: 0;
     pointer-events: none;
@@ -196,7 +196,7 @@
   .note {
     position: absolute;
     font-family: 'Arial', sans-serif;
-    font-size: 32px;
+    font-size: 20px;
     color: white;
     opacity: 0;
     animation: float-note 2s ease-out infinite;
@@ -232,53 +232,46 @@
     z-index: 5;
   }
 
-  .moon-outline {
-    position: absolute;
-    top: -3px;
-    left: -3px;
-    width: 86px;
-    height: 86px;
-    border: 2px solid white;
-    border-radius: 50%;
-    opacity: 0;
-    animation: outline-toggle 16s steps(1, end) infinite;
-  }
-
   .moon {
     position: relative;
     width: 80px;
     height: 80px;
-    background: white;
-    border-radius: 50%;
     overflow: hidden;
     image-rendering: pixelated;
     image-rendering: -moz-crisp-edges;
     image-rendering: crisp-edges;
   }
 
-  .crater {
-    position: absolute;
-    background: #c8c8c8;
-    border-radius: 50%;
-    z-index: 1;
-  }
-
-  .crater-1 { width: 14px; height: 14px; top: 18px; left: 20px; }
-  .crater-2 { width: 8px;  height: 8px;  top: 14px; left: 50px; }
-  .crater-3 { width: 10px; height: 10px; top: 42px; left: 40px; }
-  .crater-4 { width: 6px;  height: 6px;  top: 52px; left: 18px; }
-  .crater-5 { width: 7px;  height: 7px;  top: 30px; left: 60px; }
-
-  .moon-shadow {
+  .moon-body,
+  .moon-shadow,
+  .moon-outline {
     position: absolute;
     top: 0;
     left: 0;
-    width: 80px;
-    height: 80px;
-    background: #4B1FD1;
-    border-radius: 50%;
+    width: 100%;
+    height: 100%;
+    display: block;
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+  }
+
+  .moon-body {
+    z-index: 1;
+  }
+
+  .moon-shadow {
     z-index: 2;
     animation: moon-phases 16s steps(1, end) infinite;
+  }
+
+  .moon-outline {
+    width: 80px;
+    height: 80px;
+    pointer-events: none;
+    opacity: 0;
+    z-index: 3;
+    animation: outline-toggle 16s steps(1, end) infinite;
   }
 
   @keyframes moon-phases {
@@ -337,13 +330,13 @@
       width: 60px;
       height: 60px;
     }
-    .moon, .moon-shadow {
+    .moon {
       width: 60px;
       height: 60px;
     }
     .moon-outline {
-      width: 66px;
-      height: 66px;
+      width: 60px;
+      height: 60px;
     }
   }
 
@@ -510,16 +503,13 @@
 
   .audio-slash {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 80%;
-    height: 4px;
-    background: #ff2a2a;
-    transform: translate(-50%, -50%) rotate(-45deg);
-    transform-origin: center;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     display: none;
     pointer-events: none;
-    box-shadow: 0 0 4px rgba(255, 42, 42, 0.6);
+    filter: drop-shadow(0 0 3px rgba(255, 42, 42, 0.65));
   }
 
   .audio-toggle.paused .audio-slash {
@@ -540,15 +530,16 @@
       gap: 30px;
       margin-bottom: 20px;
     }
-    .top-icons .audio-disc,
-    .top-icons .books-icon,
-    .top-icons .film-icon {
-      width: 54px;
-      height: 54px;
+    .audio-corner {
+      bottom: 14px;
+      right: 14px;
     }
-    .audio-disc-wrap {
-      width: 54px;
-      height: 54px;
+    .audio-corner .audio-disc-wrap {
+      width: 30px;
+      height: 30px;
+    }
+    .audio-corner .top-icon-label {
+      font-size: 10px;
     }
     .top-icon-label {
       font-size: 14px;
@@ -780,20 +771,40 @@
     text-align: center;
   }
 
-  .top-icons .audio-disc,
-  .top-icons .books-icon,
-  .top-icons .film-icon {
-    width: 70px;
-    height: 70px;
+  .top-icon-tile {
+    width: clamp(48px, 11vw, 100px);
+    height: clamp(48px, 11vw, 100px);
+    background: #2d1080;
+    border-radius: 18%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14%;
+    box-sizing: border-box;
+    transition: transform 0.12s ease, box-shadow 0.12s ease;
   }
 
-  .top-icons .audio-slash {
-    width: 50px;
-    height: 4px;
+  .top-icon:hover .top-icon-tile {
+    box-shadow: 0 0 0 2px #FFFFFF, 0 0 8px rgba(255, 255, 255, 0.6);
   }
 
-  .top-icons .audio-disc {
-    animation: none !important;
+  .top-icon:active .top-icon-tile {
+    box-shadow: 0 0 0 1px #FFFFFF inset;
+  }
+
+  .top-icon-tile .books-icon,
+  .top-icon-tile .film-icon {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  .top-icons img,
+  .top-icons svg {
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+    shape-rendering: crispEdges;
   }
 
   .top-icons .books-button {
@@ -804,8 +815,39 @@
     animation: none !important;
   }
 
-  .top-icons .audio-toggle.paused .audio-disc {
-    animation: none !important;
+  .audio-corner {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 50;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    background: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+  }
+
+  .audio-corner svg {
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+    shape-rendering: crispEdges;
+  }
+
+  .audio-corner .audio-disc-wrap {
+    width: 36px;
+    height: 36px;
+  }
+
+  .audio-corner .top-icon-label {
+    font-size: 11px;
+    letter-spacing: 1px;
   }
 </style>
 </head>
@@ -875,15 +917,73 @@
 </div>
 
 <div class="moon-wrap" aria-hidden="true">
-  <div class="moon-outline"></div>
   <div class="moon">
-    <div class="crater crater-1"></div>
-    <div class="crater crater-2"></div>
-    <div class="crater crater-3"></div>
-    <div class="crater crater-4"></div>
-    <div class="crater crater-5"></div>
-    <div class="moon-shadow"></div>
+    <svg class="moon-body" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges" aria-hidden="true">
+      <!-- 16x16 pixel-circle moon body (cream white) -->
+      <g fill="#f5f0e0">
+        <rect x="6" y="0" width="4" height="1"/>
+        <rect x="4" y="1" width="8" height="1"/>
+        <rect x="3" y="2" width="10" height="1"/>
+        <rect x="2" y="3" width="12" height="1"/>
+        <rect x="1" y="4" width="14" height="2"/>
+        <rect x="0" y="6" width="16" height="4"/>
+        <rect x="1" y="10" width="14" height="2"/>
+        <rect x="2" y="12" width="12" height="1"/>
+        <rect x="3" y="13" width="10" height="1"/>
+        <rect x="4" y="14" width="8" height="1"/>
+        <rect x="6" y="15" width="4" height="1"/>
+      </g>
+      <!-- Pixel craters (1-2px dark gray squares on lit side) -->
+      <g fill="#b8b0a0">
+        <rect x="4" y="5" width="2" height="2"/>
+        <rect x="10" y="3" width="1" height="1"/>
+        <rect x="8" y="9" width="2" height="2"/>
+        <rect x="4" y="10" width="1" height="1"/>
+        <rect x="12" y="6" width="1" height="1"/>
+      </g>
+    </svg>
+    <svg class="moon-shadow" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges" aria-hidden="true">
+      <!-- Identical 16x16 pixel-circle filled in page bg color; translateX animation slides it to produce phases -->
+      <g fill="#4B1FD1">
+        <rect x="6" y="0" width="4" height="1"/>
+        <rect x="4" y="1" width="8" height="1"/>
+        <rect x="3" y="2" width="10" height="1"/>
+        <rect x="2" y="3" width="12" height="1"/>
+        <rect x="1" y="4" width="14" height="2"/>
+        <rect x="0" y="6" width="16" height="4"/>
+        <rect x="1" y="10" width="14" height="2"/>
+        <rect x="2" y="12" width="12" height="1"/>
+        <rect x="3" y="13" width="10" height="1"/>
+        <rect x="4" y="14" width="8" height="1"/>
+        <rect x="6" y="15" width="4" height="1"/>
+      </g>
+    </svg>
   </div>
+  <svg class="moon-outline" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges" aria-hidden="true">
+    <!-- Perimeter pixel ring of the same circle (visible at new + full moon via outline-toggle) -->
+    <g fill="#ffffff">
+      <rect x="6" y="0" width="4" height="1"/>
+      <rect x="4" y="1" width="2" height="1"/>
+      <rect x="10" y="1" width="2" height="1"/>
+      <rect x="3" y="2" width="1" height="1"/>
+      <rect x="12" y="2" width="1" height="1"/>
+      <rect x="2" y="3" width="1" height="1"/>
+      <rect x="13" y="3" width="1" height="1"/>
+      <rect x="1" y="4" width="1" height="2"/>
+      <rect x="14" y="4" width="1" height="2"/>
+      <rect x="0" y="6" width="1" height="4"/>
+      <rect x="15" y="6" width="1" height="4"/>
+      <rect x="1" y="10" width="1" height="2"/>
+      <rect x="14" y="10" width="1" height="2"/>
+      <rect x="2" y="12" width="1" height="1"/>
+      <rect x="13" y="12" width="1" height="1"/>
+      <rect x="3" y="13" width="1" height="1"/>
+      <rect x="12" y="13" width="1" height="1"/>
+      <rect x="4" y="14" width="2" height="1"/>
+      <rect x="10" y="14" width="2" height="1"/>
+      <rect x="6" y="15" width="4" height="1"/>
+    </g>
+  </svg>
 </div>
 
 <header>
@@ -892,73 +992,77 @@
 
 <div class="bottom-stack">
 <div class="top-icons">
-  <button id="audio-toggle" class="audio-toggle top-icon" aria-label="Toggle sound">
-    <span class="audio-disc-wrap">
-      <img src="audio.png" alt="" class="audio-disc">
-      <span class="audio-slash"></span>
-    </span>
-    <span class="top-icon-label">AUDIO</span>
-  </button>
-
   <a href="#" class="books-button top-icon" aria-label="Education" onclick="document.getElementById('education-modal').classList.add('open'); return false;">
-    <svg class="books-icon" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges">
-    <!-- BOTTOM BOOK (deep red) -->
-    <!-- Cover -->
-    <rect x="6" y="44" width="52" height="14" fill="#8b1e2e"/>
-    <!-- Top edge highlight -->
-    <rect x="6" y="44" width="52" height="2" fill="#b32e42"/>
-    <!-- Spine binding line (left edge) -->
-    <rect x="6" y="44" width="3" height="14" fill="#5a0f1d"/>
-    <!-- Page edges (right side, visible white pages) -->
-    <rect x="55" y="46" width="3" height="10" fill="#f4ead5"/>
-    <rect x="55" y="48" width="3" height="1" fill="#d4c8a8"/>
-    <rect x="55" y="52" width="3" height="1" fill="#d4c8a8"/>
-    <!-- Title bar on cover -->
-    <rect x="14" y="49" width="32" height="1" fill="#f0c674" opacity="0.7"/>
-    <rect x="18" y="52" width="24" height="1" fill="#f0c674" opacity="0.5"/>
+    <span class="top-icon-tile">
+    <svg class="books-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges" aria-hidden="true">
+      <!-- BOTTOM BOOK (mustard yellow) -->
+      <rect x="2" y="16" width="21" height="6" fill="#000000"/>
+      <rect x="3" y="17" width="19" height="4" fill="#c9962d"/>
+      <rect x="3" y="17" width="19" height="1" fill="#e0b340"/>
+      <rect x="3" y="17" width="2" height="4" fill="#7a5912"/>
+      <rect x="20" y="17" width="2" height="4" fill="#f4ead5"/>
 
-    <!-- MIDDLE BOOK (deep blue) -->
-    <!-- Cover -->
-    <rect x="10" y="28" width="48" height="14" fill="#1e4d8b"/>
-    <!-- Top edge highlight -->
-    <rect x="10" y="28" width="48" height="2" fill="#2d6bb3"/>
-    <!-- Spine binding (right edge this time, alternating) -->
-    <rect x="55" y="28" width="3" height="14" fill="#0f2e5a"/>
-    <!-- Page edges (left side) -->
-    <rect x="10" y="30" width="3" height="10" fill="#f4ead5"/>
-    <rect x="10" y="32" width="3" height="1" fill="#d4c8a8"/>
-    <rect x="10" y="36" width="3" height="1" fill="#d4c8a8"/>
-    <!-- Title bar on cover -->
-    <rect x="20" y="33" width="28" height="1" fill="#e8e8e8" opacity="0.8"/>
-    <rect x="24" y="36" width="20" height="1" fill="#e8e8e8" opacity="0.6"/>
+      <!-- MIDDLE BOOK (teal/green) -->
+      <rect x="1" y="9" width="22" height="6" fill="#000000"/>
+      <rect x="2" y="10" width="20" height="4" fill="#1c8585"/>
+      <rect x="2" y="10" width="20" height="1" fill="#34b0b0"/>
+      <rect x="20" y="10" width="2" height="4" fill="#0e4f4f"/>
+      <rect x="2" y="10" width="2" height="4" fill="#f4ead5"/>
 
-    <!-- TOP BOOK (mustard yellow) -->
-    <!-- Cover -->
-    <rect x="4" y="12" width="46" height="14" fill="#c9962d"/>
-    <!-- Top edge highlight -->
-    <rect x="4" y="12" width="46" height="2" fill="#e0b340"/>
-    <!-- Spine binding (left edge) -->
-    <rect x="4" y="12" width="3" height="14" fill="#8a661c"/>
-    <!-- Page edges (right side) -->
-    <rect x="47" y="14" width="3" height="10" fill="#f4ead5"/>
-    <rect x="47" y="16" width="3" height="1" fill="#d4c8a8"/>
-    <rect x="47" y="20" width="3" height="1" fill="#d4c8a8"/>
-    <!-- Title bar on cover -->
-    <rect x="12" y="17" width="30" height="1" fill="#3a2a0e" opacity="0.7"/>
-    <rect x="16" y="20" width="22" height="1" fill="#3a2a0e" opacity="0.5"/>
+      <!-- TOP BOOK (red/maroon) -->
+      <rect x="3" y="2" width="18" height="6" fill="#000000"/>
+      <rect x="4" y="3" width="16" height="4" fill="#a93030"/>
+      <rect x="4" y="3" width="16" height="1" fill="#d63a3a"/>
+      <rect x="4" y="3" width="2" height="4" fill="#5a1818"/>
+      <rect x="18" y="3" width="2" height="4" fill="#f4ead5"/>
 
-    <!-- Red bookmark sticking out from top book -->
-    <rect x="38" y="6" width="4" height="10" fill="#d63a3a"/>
-    <rect x="38" y="14" width="4" height="2" fill="#a82828"/>
-    <!-- Bookmark fork at bottom -->
-    <rect x="38" y="14" width="1" height="2" fill="#d63a3a"/>
-    <rect x="41" y="14" width="1" height="2" fill="#d63a3a"/>
-  </svg>
+      <!-- Bookmark sticking up from top book -->
+      <rect x="14" y="0" width="2" height="3" fill="#f0c674"/>
+    </svg>
+    </span>
     <span class="top-icon-label">EDUCATION</span>
   </a>
 
   <a href="#" class="film-button top-icon" aria-label="Film" onclick="document.getElementById('film-modal').classList.add('open'); return false;">
-    <img src="film.png" alt="" class="film-icon">
+    <span class="top-icon-tile">
+    <svg class="film-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges" aria-hidden="true">
+      <!-- Clapperboard body (slate) -->
+      <rect x="1" y="7" width="22" height="15" fill="#000000"/>
+      <rect x="2" y="8" width="20" height="13" fill="#1a1a1a"/>
+
+      <!-- White slate writing area -->
+      <rect x="3" y="10" width="18" height="9" fill="#f0f0f0"/>
+      <!-- Slate text lines -->
+      <rect x="5" y="12" width="14" height="1" fill="#1a1a1a"/>
+      <rect x="5" y="14" width="10" height="1" fill="#1a1a1a"/>
+      <rect x="5" y="16" width="12" height="1" fill="#1a1a1a"/>
+
+      <!-- Top arm (clapper stick) -->
+      <rect x="2" y="2" width="20" height="5" fill="#000000"/>
+      <rect x="3" y="3" width="18" height="3" fill="#1a1a1a"/>
+
+      <!-- Stepped diagonal white stripes on top arm -->
+      <!-- Stripe 1 -->
+      <rect x="3" y="3" width="2" height="1" fill="#ffffff"/>
+      <rect x="4" y="4" width="2" height="1" fill="#ffffff"/>
+      <rect x="5" y="5" width="2" height="1" fill="#ffffff"/>
+      <!-- Stripe 2 -->
+      <rect x="8" y="3" width="2" height="1" fill="#ffffff"/>
+      <rect x="9" y="4" width="2" height="1" fill="#ffffff"/>
+      <rect x="10" y="5" width="2" height="1" fill="#ffffff"/>
+      <!-- Stripe 3 -->
+      <rect x="13" y="3" width="2" height="1" fill="#ffffff"/>
+      <rect x="14" y="4" width="2" height="1" fill="#ffffff"/>
+      <rect x="15" y="5" width="2" height="1" fill="#ffffff"/>
+      <!-- Stripe 4 -->
+      <rect x="18" y="3" width="2" height="1" fill="#ffffff"/>
+      <rect x="19" y="4" width="2" height="1" fill="#ffffff"/>
+      <rect x="20" y="5" width="1" height="1" fill="#ffffff"/>
+
+      <!-- Hinge pivot at left -->
+      <rect x="3" y="7" width="2" height="2" fill="#666666"/>
+    </svg>
+    </span>
     <span class="top-icon-label">FILM</span>
   </a>
 </div>
@@ -978,6 +1082,84 @@
   </a>
 </section>
 </div>
+
+<button id="audio-toggle" class="audio-toggle audio-corner" aria-label="Toggle sound">
+  <span class="audio-disc-wrap">
+    <svg class="audio-disc" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges" aria-hidden="true">
+      <g fill="#1f1f24">
+        <rect x="6" y="0" width="4" height="1"/>
+        <rect x="4" y="1" width="8" height="1"/>
+        <rect x="3" y="2" width="10" height="1"/>
+        <rect x="2" y="3" width="12" height="1"/>
+        <rect x="1" y="4" width="14" height="2"/>
+        <rect x="0" y="6" width="16" height="4"/>
+        <rect x="1" y="10" width="14" height="2"/>
+        <rect x="2" y="12" width="12" height="1"/>
+        <rect x="3" y="13" width="10" height="1"/>
+        <rect x="4" y="14" width="8" height="1"/>
+        <rect x="6" y="15" width="4" height="1"/>
+      </g>
+      <g fill="#0a0a0a">
+        <rect x="6" y="0" width="4" height="1"/>
+        <rect x="4" y="1" width="2" height="1"/>
+        <rect x="10" y="1" width="2" height="1"/>
+        <rect x="3" y="2" width="1" height="1"/>
+        <rect x="12" y="2" width="1" height="1"/>
+        <rect x="2" y="3" width="1" height="1"/>
+        <rect x="13" y="3" width="1" height="1"/>
+        <rect x="1" y="4" width="1" height="2"/>
+        <rect x="14" y="4" width="1" height="2"/>
+        <rect x="0" y="6" width="1" height="4"/>
+        <rect x="15" y="6" width="1" height="4"/>
+        <rect x="1" y="10" width="1" height="2"/>
+        <rect x="14" y="10" width="1" height="2"/>
+        <rect x="2" y="12" width="1" height="1"/>
+        <rect x="13" y="12" width="1" height="1"/>
+        <rect x="3" y="13" width="1" height="1"/>
+        <rect x="12" y="13" width="1" height="1"/>
+        <rect x="4" y="14" width="2" height="1"/>
+        <rect x="10" y="14" width="2" height="1"/>
+        <rect x="6" y="15" width="4" height="1"/>
+      </g>
+      <g fill="#7a7a82">
+        <rect x="3" y="4" width="1" height="1"/>
+        <rect x="4" y="3" width="1" height="1"/>
+        <rect x="12" y="11" width="1" height="1"/>
+        <rect x="11" y="12" width="1" height="1"/>
+      </g>
+      <g fill="#ffffff">
+        <rect x="4" y="4" width="1" height="1"/>
+        <rect x="5" y="3" width="1" height="1"/>
+        <rect x="11" y="11" width="1" height="1"/>
+        <rect x="12" y="12" width="1" height="1"/>
+      </g>
+      <rect x="6" y="6" width="4" height="4" fill="#9a9a9a"/>
+      <rect x="6" y="6" width="4" height="1" fill="#cfcfcf"/>
+      <rect x="7" y="7" width="2" height="2" fill="#4B1FD1"/>
+    </svg>
+    <svg class="audio-slash" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges" aria-hidden="true">
+      <g fill="#ff2a2a">
+        <rect x="1" y="13" width="2" height="2"/>
+        <rect x="3" y="11" width="2" height="2"/>
+        <rect x="5" y="9" width="2" height="2"/>
+        <rect x="7" y="7" width="2" height="2"/>
+        <rect x="9" y="5" width="2" height="2"/>
+        <rect x="11" y="3" width="2" height="2"/>
+        <rect x="13" y="1" width="2" height="2"/>
+      </g>
+      <g fill="#a31818">
+        <rect x="1" y="15" width="2" height="1"/>
+        <rect x="3" y="13" width="2" height="1"/>
+        <rect x="5" y="11" width="2" height="1"/>
+        <rect x="7" y="9" width="2" height="1"/>
+        <rect x="9" y="7" width="2" height="1"/>
+        <rect x="11" y="5" width="2" height="1"/>
+        <rect x="13" y="3" width="2" height="1"/>
+      </g>
+    </svg>
+  </span>
+  <span class="top-icon-label">AUDIO</span>
+</button>
 
 <footer>
   &copy; 2026 MAXIMUS VICKERS &middot; <span class="footer-email">maximus@fourmeasure.com</span>
