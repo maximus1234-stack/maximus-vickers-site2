@@ -654,15 +654,17 @@
     height: 60px;
     z-index: 6;
     display: block;
-    transition: transform 0.2s ease;
     cursor: pointer;
     background: transparent;
     border: none;
     padding: 0;
+    animation: float-books 3s ease-in-out infinite;
+    transition: transform 0.2s ease;
   }
 
   .books-button:hover {
-    transform: scale(1.15);
+    animation-play-state: paused;
+    transform: translateY(-4px) scale(1.15);
   }
 
   .books-icon {
@@ -733,6 +735,11 @@
     border: none;
     border-top: 1px solid rgba(255, 255, 255, 0.3);
     margin: 20px 0 16px 0;
+  }
+
+  @keyframes float-books {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-8px); }
   }
 </style>
 </head>
@@ -924,7 +931,7 @@
       <h3 class="edu-school">UNIVERSITY OF MIAMI</h3>
       <div class="edu-subschool">Herbert Business School</div>
       <div class="edu-degree">B.B.A. Management &middot; Minor in Entrepreneurship</div>
-      <div class="edu-dates">2023 &mdash; 2026</div>
+      <div class="edu-dates">Aug 2023 — Dec 2026</div>
       <ul class="edu-list">
         <li>Presidential Scholarship</li>
         <li>Provost's Honor Roll (Fall '25)</li>
@@ -938,7 +945,7 @@
     <div class="edu-entry">
       <h3 class="edu-school">MIAMI DADE COLLEGE</h3>
       <div class="edu-degree">A.A. Business</div>
-      <div class="edu-dates">Oct 2022 &mdash; Jul 2023</div>
+      <div class="edu-dates">Aug 2022 — Jul 2023</div>
       <ul class="edu-list">
         <li>GPA 4.0</li>
         <li>Dean's List (Fall '22, Spring '23)</li>
