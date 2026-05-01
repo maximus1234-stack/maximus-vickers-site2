@@ -298,6 +298,138 @@
     100%  { opacity: 1; }
   }
 
+  /* BIRD WRAPPER — owns the flight transform so it doesn't conflict
+     with the inner button's hover/click scale transform */
+  .bird-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 3;
+    pointer-events: none;
+    animation: bird-fly 20s linear infinite;
+    will-change: transform;
+  }
+
+  /* PIXEL BIRD — small white sprite gliding across the sky (clickable) */
+  .pixel-bird {
+    position: relative;
+    display: block;
+    width: 70px;
+    height: 32px;
+    /* Button reset so the <button> wrapper has no default chrome */
+    background: transparent;
+    border: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    font: inherit;
+    color: inherit;
+    /* Re-enable clicks (wrapper sets pointer-events: none) */
+    pointer-events: auto;
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+    shape-rendering: crispEdges;
+    transition: transform 0.12s ease;
+  }
+
+  /* Hover: subtle pixel-safe scale up */
+  .pixel-bird:hover {
+    transform: scale(1.08);
+  }
+
+  /* Click: brief scale down (snaps back when released) */
+  .pixel-bird:active {
+    transform: scale(0.92);
+    transition-duration: 0.08s;
+  }
+
+  .pixel-bird:focus { outline: none; }
+
+  /* Accessible focus ring (only when keyboard-focused) */
+  .pixel-bird:focus-visible {
+    outline: 2px solid #FFFFFF;
+    outline-offset: 4px;
+  }
+
+  /* Small pixel "Resume" name tag attached below the bird */
+  .bird-tag {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translate(-50%, 10px);
+    background: #f5f0e0;
+    border: 2px solid #1a0a3d;
+    padding: 1px 7px 0 7px;
+    font-family: 'VT323', monospace;
+    font-size: 13px;
+    line-height: 1.1;
+    color: #1a0a3d;
+    letter-spacing: 1px;
+    white-space: nowrap;
+    text-transform: uppercase;
+    image-rendering: pixelated;
+    shape-rendering: crispEdges;
+  }
+
+  /* Pixel "string" connecting the tag to the bird above it */
+  .bird-tag::before {
+    content: "";
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 8px;
+    background: #1a0a3d;
+  }
+
+  .pixel-bird svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+    shape-rendering: crispEdges;
+  }
+
+  .pixel-bird .bird-frame-1 {
+    animation: bird-flap 0.4s steps(1, end) infinite;
+  }
+
+  .pixel-bird .bird-frame-2 {
+    opacity: 0;
+    animation: bird-flap 0.4s steps(1, end) infinite;
+    animation-delay: 0.2s;
+  }
+
+  @keyframes bird-flap {
+    0%, 49.99% { opacity: 1; }
+    50%, 100%  { opacity: 0; }
+  }
+
+  /* Flight path: left to right with gentle sine-wave bobbing.
+     Vertical range stays between 36vh and 44vh — sky band between
+     the cloud (top) and the mountains (around 60vh). */
+  @keyframes bird-fly {
+    0%   { transform: translate(-12vw, 42vh); }
+    25%  { transform: translate(28vw, 36vh); }
+    50%  { transform: translate(54vw, 44vh); }
+    75%  { transform: translate(80vw, 38vh); }
+    100% { transform: translate(112vw, 42vh); }
+  }
+
+  /* Mobile flight path — slightly tighter vertical range so the bird
+     stays above the mountains (60vh) and below the cloud (~18vh + cloud height) */
+  @keyframes bird-fly-mobile {
+    0%   { transform: translate(-15vw, 40vh); }
+    25%  { transform: translate(25vw, 34vh); }
+    50%  { transform: translate(50vw, 42vh); }
+    75%  { transform: translate(75vw, 36vh); }
+    100% { transform: translate(118vw, 40vh); }
+  }
+
   .film-button {
     z-index: 6;
     display: block;
@@ -1023,6 +1155,60 @@
     .audio-corner .top-icon-label {
       font-size: 9px !important;
     }
+
+    .bird-wrapper {
+      animation: bird-fly-mobile 15s linear infinite;
+    }
+    .pixel-bird {
+      width: 50px;
+      height: 24px;
+    }
+    .bird-tag {
+      font-size: 10px;
+      padding: 1px 5px 0 5px;
+      border-width: 1px;
+      transform: translate(-50%, 8px);
+    }
+    .bird-tag::before {
+      top: -8px;
+      height: 6px;
+      width: 1px;
+    }
+  }
+
+  /* Resume modal — opens when the bird is clicked */
+  .resume-modal {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+  }
+
+  .resume-content {
+    position: relative;
+    width: 80%;
+    height: 80%;
+    margin: 5% auto;
+    background: white;
+    border: 4px solid black;
+  }
+
+  .resume-content iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+
+  .resume-close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
+    cursor: pointer;
   }
 </style>
 </head>
@@ -1116,6 +1302,42 @@
     blind you from the<br>
     beauty of what is.
   </p>
+</div>
+
+<div class="bird-wrapper">
+<button id="bird" class="pixel-bird" type="button" aria-label="Open Resume">
+  <svg viewBox="0 0 13 6" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+    <!-- Frame 1: wings UP — clearer bird shape with wings, body, head + beak (right) -->
+    <g class="bird-frame-1" fill="#FFFFFF">
+      <!-- Wing tips raised -->
+      <rect x="2" y="0" width="1" height="1"/>
+      <rect x="10" y="0" width="1" height="1"/>
+      <!-- Wing top arms -->
+      <rect x="2" y="1" width="2" height="1"/>
+      <rect x="9" y="1" width="2" height="1"/>
+      <!-- Wing inner arms angling toward body -->
+      <rect x="3" y="2" width="2" height="1"/>
+      <rect x="8" y="2" width="2" height="1"/>
+      <!-- Body + head + beak (rightmost pixel is the beak) -->
+      <rect x="4" y="3" width="8" height="1"/>
+      <!-- Underbelly thickness -->
+      <rect x="5" y="4" width="4" height="1"/>
+    </g>
+    <!-- Frame 2: wings DOWN/SPREAD — same body, wings extending laterally and drooping -->
+    <g class="bird-frame-2" fill="#FFFFFF">
+      <!-- Body + head + beak (same as frame 1 so the body stays put) -->
+      <rect x="4" y="3" width="8" height="1"/>
+      <!-- Wings extending outward at body level + underbelly center -->
+      <rect x="1" y="4" width="3" height="1"/>
+      <rect x="5" y="4" width="3" height="1"/>
+      <rect x="9" y="4" width="3" height="1"/>
+      <!-- Wing tips drooping below -->
+      <rect x="0" y="5" width="1" height="1"/>
+      <rect x="12" y="5" width="1" height="1"/>
+    </g>
+  </svg>
+  <span class="bird-tag">Resume</span>
+</button>
 </div>
 
 <div class="moon-wrap" aria-hidden="true">
@@ -1419,13 +1641,41 @@
   </div>
 </div>
 
+<div id="resume-modal" class="resume-modal">
+  <div class="resume-content">
+    <span class="resume-close">&times;</span>
+    <iframe src="Maximus_Vickers_Resume_Final.docx%20(3).pdf"></iframe>
+  </div>
+</div>
+
 <script>
   document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') {
       document.getElementById('film-modal').classList.remove('open');
       document.getElementById('education-modal').classList.remove('open');
+      document.getElementById('resume-modal').style.display = 'none';
     }
   });
+
+  // Bird click → open resume PDF in an inline modal
+  (function() {
+    const modal = document.getElementById('resume-modal');
+    const closeBtn = document.querySelector('.resume-close');
+
+    document.getElementById('bird').onclick = function() {
+      modal.style.display = 'block';
+    };
+
+    closeBtn.onclick = function() {
+      modal.style.display = 'none';
+    };
+
+    modal.addEventListener('click', function(e) {
+      if (e.target === modal) {
+        modal.style.display = 'none';
+      }
+    });
+  })();
 </script>
 
 <audio id="bg-audio" src="mice-on-venus.mp3" loop preload="auto"></audio>
