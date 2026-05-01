@@ -851,10 +851,10 @@
   }
 
   /* Mobile: anchor the scene to vh-based positions so the layout mirrors
-     desktop proportions on tall narrow viewports. Mountains, skater, and
-     ground line all sit at 65vh (skater wheels + mountain bottoms touch
-     the ground line). Bottom-stack and footer use absolute positioning
-     against the viewport. Audio-corner stays fixed via its own rules. */
+     desktop proportions on tall narrow viewports. Scene sits at 60vh
+     (skater wheels + mountain bottoms touch the ground line) so the
+     icon zone (65–95vh) and the footer (bottom: 14px) have room to
+     breathe without overlap. */
   @media (max-width: 600px) {
     html, body {
       min-height: 100vh;
@@ -867,7 +867,7 @@
     .mountains-back {
       order: 0;
       position: fixed;
-      top: 65vh !important;
+      top: 60vh !important;
       width: 100%;
       margin-top: 0;
       transform: translateY(-100%);
@@ -876,7 +876,7 @@
     .mountains-front {
       order: 0;
       position: fixed;
-      top: 65vh !important;
+      top: 60vh !important;
       width: 100%;
       margin-top: 0;
       transform: translateY(-100%);
@@ -885,18 +885,17 @@
     .skater-stage {
       order: 0;
       position: fixed;
-      top: 65vh !important;
+      top: 60vh !important;
       width: 100%;
       margin-top: 0;
-      /* No translateY here — the stage is height: 0 and runs the
-         skate-across translateX animation; an extra static transform
-         would conflict with the animation. */
+      /* No translateY here — the stage runs the skate-across translateX
+         animation; an extra static transform would conflict with it. */
     }
 
     .ground-line {
       order: 0;
       position: fixed;
-      top: 65vh !important;
+      top: 60vh !important;
       width: 100%;
     }
 
@@ -914,7 +913,7 @@
     .bottom-stack {
       order: 0;
       position: absolute;
-      top: 72vh;
+      top: 65vh;
       left: 0;
       right: 0;
       width: 100%;
@@ -923,20 +922,25 @@
       padding-top: 0;
       padding-bottom: 0;
       z-index: 5;
-      gap: 16px;
+      gap: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
     footer {
       order: 0;
       position: absolute;
-      bottom: 12px;
+      bottom: 14px;
       left: 0;
       right: 0;
       width: 100%;
       text-align: center;
-      font-size: 11px;
-      padding: 0 16px;
+      font-size: 10px;
+      padding: 0 12px;
       margin: 0;
+      border-top: none;
+      z-index: 6;
     }
 
     .top-icons {
@@ -944,9 +948,10 @@
       top: auto;
       transform: none;
       margin-top: 0;
-      margin-bottom: 12px;
+      margin-bottom: 6px;
       display: flex;
       justify-content: center;
+      align-items: center;
       gap: 18px;
       flex-wrap: nowrap;
     }
@@ -956,8 +961,40 @@
       margin-bottom: 0;
       display: flex;
       justify-content: center;
+      align-items: center;
       gap: 18px;
       flex-wrap: nowrap;
+    }
+
+    /* Shrink the EDU/FILM tile + the social icon imgs to 52px so both
+       rows + footer fit cleanly between ground line (60vh) and bottom */
+    .top-icon-tile,
+    .icon-link img {
+      width: 52px !important;
+      height: 52px !important;
+    }
+
+    /* Shrink the labels under both rows */
+    .top-icon-label,
+    .icon-label {
+      font-size: 10px !important;
+      letter-spacing: 1px;
+      margin-top: 4px !important;
+    }
+
+    /* Lift the AUDIO corner above the footer text and shrink it slightly */
+    .audio-corner {
+      bottom: 44px !important;
+      right: 12px !important;
+    }
+
+    .audio-corner .audio-disc-wrap {
+      width: 38px;
+      height: 38px;
+    }
+
+    .audio-corner .top-icon-label {
+      font-size: 9px !important;
     }
   }
 </style>
