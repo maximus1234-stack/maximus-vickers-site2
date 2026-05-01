@@ -849,6 +849,37 @@
     font-size: 11px;
     letter-spacing: 1px;
   }
+
+  /* Mobile: ensure both icon rows sit clearly below the fixed ground line */
+  @media (max-width: 600px) {
+    .bottom-stack {
+      margin-top: 60px;
+      padding-top: 20px;
+      position: relative;
+      z-index: 5;
+      gap: 16px;
+    }
+
+    .top-icons {
+      position: static;
+      top: auto;
+      transform: none;
+      margin-top: 0;
+      margin-bottom: 16px;
+      display: flex;
+      justify-content: center;
+      gap: 18px;
+      flex-wrap: nowrap;
+    }
+
+    .desktop-icons {
+      margin-top: 0;
+      display: flex;
+      justify-content: center;
+      gap: 18px;
+      flex-wrap: nowrap;
+    }
+  }
 </style>
 </head>
 <body>
