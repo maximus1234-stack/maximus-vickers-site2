@@ -571,39 +571,67 @@
   }
 
   .mountains-back {
-    top: calc(50% + 30px);
-    height: 60px;
-    fill: white;
-    opacity: 0.25;
+    top: calc(50% + 5px);
+    height: 110px;
+    opacity: 0.55;
+  }
+
+  .mountains-back .peak-body {
+    fill: rgba(255, 255, 255, 0.45);
+  }
+
+  .mountains-back .snow-cap {
+    fill: rgba(255, 255, 255, 0.95);
   }
 
   .mountains-front {
-    top: calc(50% + 50px);
-    height: 70px;
+    top: calc(50% + 25px);
+    height: 130px;
+    opacity: 0.85;
+  }
+
+  .mountains-front .peak-body {
+    fill: rgba(255, 255, 255, 0.7);
+  }
+
+  .mountains-front .snow-cap {
     fill: white;
-    opacity: 0.45;
   }
 
   @media (max-width: 768px) {
     .mountains-back {
-      top: calc(50% + 30px);
-      height: 45px;
+      top: calc(50% + 5px);
+      height: 80px;
     }
     .mountains-front {
-      top: calc(50% + 50px);
-      height: 55px;
+      top: calc(50% + 25px);
+      height: 95px;
     }
   }
 </style>
 </head>
 <body>
 
-<svg class="mountains mountains-back" viewBox="0 0 1200 100" preserveAspectRatio="none" aria-hidden="true">
-  <polygon points="0,100 80,55 160,75 240,40 340,70 440,30 540,60 640,45 760,65 860,35 960,55 1080,40 1200,60 1200,100" />
+<svg class="mountains mountains-back" viewBox="0 0 1200 200" preserveAspectRatio="none" aria-hidden="true">
+  <!-- Back range mountain bodies -->
+  <polygon class="peak-body" points="0,200 60,80 110,130 180,40 250,110 310,70 380,20 450,90 520,50 590,100 660,30 730,85 800,55 870,15 940,75 1010,45 1080,95 1150,35 1200,80 1200,200" />
+  <!-- Back range snow caps -->
+  <polygon class="snow-cap" points="170,50 180,40 190,52 250,110 240,118 230,108 195,75 188,68 180,72 175,68 170,72" />
+  <polygon class="snow-cap" points="370,32 380,20 392,35 450,90 442,98 432,88 405,62 395,55 386,60 378,52 370,48" />
+  <polygon class="snow-cap" points="582,62 590,50 600,65 660,30 668,42 660,52 625,80 615,75 602,80 592,72 585,72" />
+  <polygon class="snow-cap" points="788,30 800,15 815,32 870,75 860,85 850,75 825,55 815,48 805,52 795,48 790,42" />
+  <polygon class="snow-cap" points="1000,55 1010,45 1022,60 1080,95 1070,105 1060,95 1035,75 1025,68 1015,72 1005,68 1000,68" />
 </svg>
 
-<svg class="mountains mountains-front" viewBox="0 0 1200 100" preserveAspectRatio="none" aria-hidden="true">
-  <polygon points="0,100 100,40 220,70 320,25 440,55 560,15 680,45 800,30 920,60 1040,20 1160,50 1200,35 1200,100" />
+<svg class="mountains mountains-front" viewBox="0 0 1200 200" preserveAspectRatio="none" aria-hidden="true">
+  <!-- Front range mountain bodies -->
+  <polygon class="peak-body" points="0,200 80,50 150,120 230,10 320,90 400,40 480,110 560,5 650,80 730,30 820,100 900,15 990,75 1070,25 1160,90 1200,55 1200,200" />
+  <!-- Front range snow caps -->
+  <polygon class="snow-cap" points="218,30 230,10 245,32 320,90 308,100 295,90 260,55 248,48 238,52 228,48 220,42" />
+  <polygon class="snow-cap" points="468,30 480,15 495,35 560,80 548,90 538,80 510,55 498,48 488,52 478,48 470,42" />
+  <polygon class="snow-cap" points="640,55 650,42 663,62 730,100 720,108 710,98 685,75 675,68 665,72 655,68 645,68" />
+  <polygon class="snow-cap" points="888,32 900,15 915,35 990,80 980,90 968,80 935,52 925,45 915,50 905,45 895,40" />
+  <polygon class="snow-cap" points="1058,42 1070,25 1085,45 1160,90 1148,100 1138,90 1108,62 1098,55 1088,60 1078,55 1068,52" />
 </svg>
 
 <div class="sticky-note" aria-hidden="true">
