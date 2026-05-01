@@ -603,11 +603,22 @@
   (function() {
     const audio = document.getElementById('bg-audio');
     const toggle = document.getElementById('audio-toggle');
+    const START_TIME = 30;
     audio.volume = 0.3;
     let started = false;
     let paused = true;
 
+    // When the track loops, jump back to the 30s mark instead of 0
+    audio.addEventListener('timeupdate', function() {
+      if (audio.currentTime < START_TIME && started) {
+        audio.currentTime = START_TIME;
+      }
+    });
+
     function startAudio() {
+      if (audio.currentTime < START_TIME) {
+        audio.currentTime = START_TIME;
+      }
       audio.play().then(() => {
         started = true;
         paused = false;
