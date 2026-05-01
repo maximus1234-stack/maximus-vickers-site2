@@ -68,7 +68,6 @@
     align-items: flex-end;
     gap: 60px;
     width: 100%;
-    margin-top: auto;
     margin-bottom: 40px;
     padding: 0 20px;
     z-index: 10;
@@ -502,6 +501,13 @@
     animation-play-state: paused;
   }
 
+  .audio-disc-wrap {
+    position: relative;
+    display: inline-block;
+    width: 70px;
+    height: 70px;
+  }
+
   .audio-slash {
     position: absolute;
     top: 50%;
@@ -537,6 +543,10 @@
     .top-icons .audio-disc,
     .top-icons .books-icon,
     .top-icons .film-icon {
+      width: 54px;
+      height: 54px;
+    }
+    .audio-disc-wrap {
       width: 54px;
       height: 54px;
     }
@@ -729,10 +739,18 @@
     justify-content: center;
     gap: 60px;
     width: 100%;
-    margin-top: auto;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     padding: 0 20px;
     z-index: 6;
+  }
+
+  .bottom-stack {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-top: auto;
+    padding-bottom: 30px;
   }
 
   .top-icon {
@@ -872,10 +890,13 @@
   <h1 class="brand"><a href="index.html">MAXIMUS VICKERS</a></h1>
 </header>
 
+<div class="bottom-stack">
 <div class="top-icons">
   <button id="audio-toggle" class="audio-toggle top-icon" aria-label="Toggle sound">
-    <img src="audio.png" alt="" class="audio-disc">
-    <span class="audio-slash"></span>
+    <span class="audio-disc-wrap">
+      <img src="audio.png" alt="" class="audio-disc">
+      <span class="audio-slash"></span>
+    </span>
     <span class="top-icon-label">AUDIO</span>
   </button>
 
@@ -956,6 +977,7 @@
     <span class="icon-label">FourMeasure</span>
   </a>
 </section>
+</div>
 
 <footer>
   &copy; 2026 MAXIMUS VICKERS &middot; <span class="footer-email">maximus@fourmeasure.com</span>
