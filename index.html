@@ -461,51 +461,65 @@
     position: fixed;
     bottom: 20px;
     right: 20px;
-    width: 44px;
-    height: 44px;
+    width: 56px;
+    height: 56px;
     background: transparent;
-    border: 2px solid white;
-    color: white;
-    font-family: 'VT323', monospace;
-    font-size: 24px;
+    border: none;
     cursor: pointer;
     z-index: 50;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: transform 0.2s ease, background 0.2s ease;
     padding: 0;
+    transition: transform 0.2s ease;
   }
 
   .audio-toggle:hover {
-    background: rgba(255, 255, 255, 0.15);
     transform: scale(1.1);
   }
 
-  .audio-icon {
+  .audio-disc {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+    display: block;
+    animation: spin-disc 4s linear infinite;
+    animation-play-state: running;
+  }
+
+  .audio-toggle.paused .audio-disc {
+    animation-play-state: paused;
+  }
+
+  .audio-slash {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 80%;
+    height: 4px;
+    background: #ff2a2a;
+    transform: translate(-50%, -50%) rotate(-45deg);
+    transform-origin: center;
     display: none;
-    line-height: 1;
+    pointer-events: none;
+    box-shadow: 0 0 4px rgba(255, 42, 42, 0.6);
   }
 
-  .audio-toggle .audio-on {
-    display: inline;
+  .audio-toggle.paused .audio-slash {
+    display: block;
   }
 
-  .audio-toggle.muted .audio-on {
-    display: none;
-  }
-
-  .audio-toggle.muted .audio-off {
-    display: inline;
+  @keyframes spin-disc {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
   }
 
   @media (max-width: 768px) {
     .audio-toggle {
       bottom: 14px;
       right: 14px;
-      width: 38px;
-      height: 38px;
-      font-size: 20px;
+      width: 46px;
+      height: 46px;
     }
   }
 </style>
@@ -576,6 +590,52 @@
       document.getElementById('film-modal').classList.remove('open');
     }
   });
+</script>
+
+<audio id="bg-audio" src="mice-on-venus.mp3" loop preload="auto"></audio>
+
+<button id="audio-toggle" class="audio-toggle" aria-label="Toggle sound">
+  <img src="audio.png" alt="" class="audio-disc">
+  <span class="audio-slash"></span>
+</button>
+
+<script>
+  (function() {
+    const audio = document.getElementById('bg-audio');
+    const toggle = document.getElementById('audio-toggle');
+    audio.volume = 0.3;
+    let started = false;
+    let paused = true;
+
+    function startAudio() {
+      audio.play().then(() => {
+        started = true;
+        paused = false;
+        toggle.classList.remove('paused');
+      }).catch(() => {});
+    }
+
+    function pauseAudio() {
+      audio.pause();
+      paused = true;
+      toggle.classList.add('paused');
+    }
+
+    document.addEventListener('click', function(e) {
+      if (e.target.closest('#audio-toggle')) return;
+      if (!started) startAudio();
+    });
+
+    toggle.addEventListener('click', function() {
+      if (!started || paused) {
+        startAudio();
+      } else {
+        pauseAudio();
+      }
+    });
+
+    toggle.classList.add('paused');
+  })();
 </script>
 </body>
 </html>
