@@ -774,22 +774,16 @@
   .top-icon-tile {
     width: clamp(48px, 11vw, 100px);
     height: clamp(48px, 11vw, 100px);
-    background: #2d1080;
-    border-radius: 18%;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 14%;
+    padding: 0;
     box-sizing: border-box;
-    transition: transform 0.12s ease, box-shadow 0.12s ease;
-  }
-
-  .top-icon:hover .top-icon-tile {
-    box-shadow: 0 0 0 2px #FFFFFF, 0 0 8px rgba(255, 255, 255, 0.6);
-  }
-
-  .top-icon:active .top-icon-tile {
-    box-shadow: 0 0 0 1px #FFFFFF inset;
+    transition: transform 0.12s ease;
   }
 
   .top-icon-tile .books-icon,
