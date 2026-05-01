@@ -531,14 +531,14 @@
       margin-bottom: 40px;
     }
     .top-icons {
-      bottom: 220px;
-      gap: 40px;
+      gap: 30px;
+      margin-bottom: 20px;
     }
     .top-icons .audio-disc,
     .top-icons .books-icon,
     .top-icons .film-icon {
-      width: 46px;
-      height: 46px;
+      width: 54px;
+      height: 54px;
     }
     .top-icon-label {
       font-size: 14px;
@@ -724,14 +724,14 @@
   }
 
   .top-icons {
-    position: fixed;
-    bottom: 200px;
-    left: 50%;
-    transform: translateX(-50%);
     display: flex;
     align-items: flex-end;
     justify-content: center;
-    gap: 80px;
+    gap: 60px;
+    width: 100%;
+    margin-top: auto;
+    margin-bottom: 30px;
+    padding: 0 20px;
     z-index: 6;
   }
 
@@ -762,9 +762,11 @@
     text-align: center;
   }
 
-  .top-icons .audio-disc {
-    width: 60px;
-    height: 60px;
+  .top-icons .audio-disc,
+  .top-icons .books-icon,
+  .top-icons .film-icon {
+    width: 70px;
+    height: 70px;
   }
 
   .top-icons .audio-slash {
@@ -772,14 +774,20 @@
     height: 4px;
   }
 
-  .top-icons .books-icon {
-    width: 60px;
-    height: 60px;
+  .top-icons .audio-disc {
+    animation: none !important;
+  }
+
+  .top-icons .books-button {
+    animation: none !important;
   }
 
   .top-icons .film-icon {
-    width: 60px;
-    height: 60px;
+    animation: none !important;
+  }
+
+  .top-icons .audio-toggle.paused .audio-disc {
+    animation: none !important;
   }
 </style>
 </head>
@@ -860,6 +868,10 @@
   </div>
 </div>
 
+<header>
+  <h1 class="brand"><a href="index.html">MAXIMUS VICKERS</a></h1>
+</header>
+
 <div class="top-icons">
   <button id="audio-toggle" class="audio-toggle top-icon" aria-label="Toggle sound">
     <img src="audio.png" alt="" class="audio-disc">
@@ -929,10 +941,6 @@
     <span class="top-icon-label">FILM</span>
   </a>
 </div>
-
-<header>
-  <h1 class="brand"><a href="index.html">MAXIMUS VICKERS</a></h1>
-</header>
 
 <section class="desktop-icons" id="fourmeasure" aria-label="Links">
   <a class="icon-link" href="https://www.instagram.com/maximussss__/" target="_blank" rel="noopener noreferrer">
