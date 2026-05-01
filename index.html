@@ -561,9 +561,50 @@
       font-size: 15px;
     }
   }
+
+  .mountains {
+    position: fixed;
+    left: 0;
+    width: 100%;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .mountains-back {
+    top: calc(50% + 30px);
+    height: 60px;
+    fill: white;
+    opacity: 0.25;
+  }
+
+  .mountains-front {
+    top: calc(50% + 50px);
+    height: 70px;
+    fill: white;
+    opacity: 0.45;
+  }
+
+  @media (max-width: 768px) {
+    .mountains-back {
+      top: calc(50% + 30px);
+      height: 45px;
+    }
+    .mountains-front {
+      top: calc(50% + 50px);
+      height: 55px;
+    }
+  }
 </style>
 </head>
 <body>
+
+<svg class="mountains mountains-back" viewBox="0 0 1200 100" preserveAspectRatio="none" aria-hidden="true">
+  <polygon points="0,100 80,55 160,75 240,40 340,70 440,30 540,60 640,45 760,65 860,35 960,55 1080,40 1200,60 1200,100" />
+</svg>
+
+<svg class="mountains mountains-front" viewBox="0 0 1200 100" preserveAspectRatio="none" aria-hidden="true">
+  <polygon points="0,100 100,40 220,70 320,25 440,55 560,15 680,45 800,30 920,60 1040,20 1160,50 1200,35 1200,100" />
+</svg>
 
 <div class="sticky-note" aria-hidden="true">
   Don't let the thought of what could have been, blind you from the beauty of what is.
