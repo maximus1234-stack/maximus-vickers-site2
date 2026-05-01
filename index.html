@@ -66,15 +66,20 @@
     display: flex;
     justify-content: center;
     align-items: flex-end;
-    flex-wrap: wrap;
-    gap: clamp(1rem, 3vw, 2.5rem);
-    padding: 1rem 1.5rem 0.3rem;
-    margin-top: auto;
-    scroll-margin-top: 60px;
+    gap: 60px;
+    width: 100%;
+    position: fixed;
+    bottom: 60px;
+    left: 0;
+    right: 0;
+    z-index: 10;
   }
 
   .icon-link {
-    display: inline-block;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
     text-align: center;
     text-decoration: none;
     color: #FFFFFF;
@@ -459,10 +464,10 @@
 
   .audio-toggle {
     position: fixed;
-    top: 280px;
-    left: calc(50% - 110px);
-    width: 50px;
-    height: 50px;
+    top: 380px;
+    left: calc(50% - 100px);
+    width: 70px;
+    height: 70px;
     background: transparent;
     border: none;
     cursor: pointer;
@@ -516,10 +521,14 @@
 
   @media (max-width: 768px) {
     .audio-toggle {
-      top: 215px;
-      left: calc(50% - 83px);
-      width: 38px;
-      height: 38px;
+      top: 290px;
+      left: calc(50% - 75px);
+      width: 54px;
+      height: 54px;
+    }
+    .desktop-icons {
+      gap: 30px;
+      bottom: 80px;
     }
   }
 </style>
