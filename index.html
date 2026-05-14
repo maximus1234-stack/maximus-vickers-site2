@@ -161,10 +161,10 @@
   .walker-stage {
     position: fixed;
     top: calc(50% + 90px);
-    left: 0;
-    width: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
     height: 0;
-    animation: walk-across 30s linear infinite;
     pointer-events: none;
     will-change: transform;
     z-index: 5;
@@ -177,11 +177,80 @@
     width: 50px;
     height: 80px;
     display: block;
-    pointer-events: none;
+    pointer-events: auto;
+    cursor: pointer;
+    transition: transform 0.15s ease, filter 0.15s ease;
+    transform-origin: center bottom;
     image-rendering: pixelated;
     image-rendering: -moz-crisp-edges;
     image-rendering: crisp-edges;
     shape-rendering: crispEdges;
+  }
+
+  /* Hover / focus: subtle scale-up + soft white glow so the walker reads as
+     clickable. Scale origin is feet so they stay on the ground line. The
+     :has() pair lets hover on the ME bubble drive the walker's hover too,
+     so walker + bubble react as one unit. */
+  .walker:hover,
+  .walker-stage:has(.walker-label:hover) .walker {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.45));
+  }
+
+  .walker:focus { outline: none; }
+
+  .walker:focus-visible {
+    outline: 2px solid #FFFFFF;
+    outline-offset: 4px;
+  }
+
+  /* "ME" speech bubble that travels with the walker. Pixel-art callout in
+     the site's light-bubble palette (cream fill + dark-navy border + dark
+     text — same scheme as the bird-tag and the cloud-quote). Clickable:
+     shares the walker's inline onclick, so click opens the photo modal. */
+  .walker-label {
+    position: absolute;
+    bottom: 90px;
+    left: 25px;
+    transform: translateX(-50%);
+    font-family: 'VT323', monospace;
+    font-size: 13px;
+    color: #1a0a3d;
+    letter-spacing: 2px;
+    background: #f5f0e0;
+    border: 2px solid #1a0a3d;
+    border-radius: 0;
+    padding: 2px 10px;
+    box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.4);
+    pointer-events: auto;
+    cursor: pointer;
+    transition: transform 0.15s ease, filter 0.15s ease;
+    user-select: none;
+    white-space: nowrap;
+    image-rendering: pixelated;
+    shape-rendering: crispEdges;
+  }
+
+  .walker-label::after {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    width: 6px;
+    height: 6px;
+    background: #f5f0e0;
+    border-right: 2px solid #1a0a3d;
+    border-bottom: 2px solid #1a0a3d;
+    transform: translateX(-50%) rotate(45deg);
+  }
+
+  /* Mirror of .walker:hover. translateX(-50%) preserved so the bubble
+     stays horizontally centered on the walker while scaling. The :has()
+     pair drives this from walker hover too — both elements scale together. */
+  .walker-label:hover,
+  .walker-stage:has(.walker:hover) .walker-label {
+    transform: translateX(-50%) scale(1.1);
+    filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.45));
   }
 
   .walker .walker-frame-1 {
@@ -202,6 +271,48 @@
   @keyframes walk-across {
     from { transform: translateX(-60px); }
     to   { transform: translateX(100vw); }
+  }
+
+  /* Music notes drifting up from the walker's headphones. Three eighth-note
+     SVGs, each rising + fading on its own delay so the stream is staggered. */
+  .walker-note {
+    position: absolute;
+    width: 12px;
+    height: 16px;
+    pointer-events: none;
+    opacity: 0;
+    fill: #FFFFFF;
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+    shape-rendering: crispEdges;
+    animation: note-float 3s ease-out infinite;
+  }
+
+  /* Cluster of start positions around the walker's right ear cup
+     (right ear cup is at SVG col 7 row 2 → ~35px right, ~10px down from
+     the top of the 50×80 walker = ~70px above the ground line). */
+  .walker-note-1 {
+    bottom: 62px;
+    left: 40px;
+  }
+
+  .walker-note-2 {
+    bottom: 66px;
+    left: 44px;
+    animation-delay: 1s;
+  }
+
+  .walker-note-3 {
+    bottom: 58px;
+    left: 36px;
+    animation-delay: 2s;
+  }
+
+  @keyframes note-float {
+    0%   { transform: translateY(0);     opacity: 0; }
+    15%  { opacity: 1; }
+    100% { transform: translateY(-40px); opacity: 0; }
   }
 
   .moon-wrap {
@@ -1007,7 +1118,6 @@
       order: 0;
       position: fixed;
       top: 60vh !important;
-      width: 100%;
       margin-top: 0;
     }
 
@@ -1467,13 +1577,18 @@
 <div class="ground-line" aria-hidden="true"></div>
 </div>
 
-<div class="walker-stage" aria-hidden="true">
-  <svg class="walker" viewBox="0 0 10 16" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+<div class="walker-stage">
+  <span class="walker-label" aria-hidden="true" onclick="document.getElementById('photo-modal').classList.add('open');">ME</span>
+  <svg class="walker" viewBox="0 0 10 16" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges" preserveAspectRatio="xMidYMid meet" role="button" tabindex="0" aria-label="View photo of Maximus" onclick="document.getElementById('photo-modal').classList.add('open');" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();document.getElementById('photo-modal').classList.add('open');}">
     <!-- Frame 1: stride — left foot planted on ground (back), right foot lifted 1px and ahead.
          Arms in opposition: left arm raised/forward (high, short), right arm hanging/back (low, long). -->
     <g class="walker-frame-1" fill="#FFFFFF">
       <!-- Head -->
       <rect x="3" y="1" width="4" height="3"/>
+      <!-- Headphones (dark navy): band over the top of head + ear cup each side -->
+      <rect x="2" y="0" width="6" height="1" fill="#1a0a3d"/>
+      <rect x="2" y="2" width="1" height="2" fill="#1a0a3d"/>
+      <rect x="7" y="2" width="1" height="2" fill="#1a0a3d"/>
       <!-- Neck -->
       <rect x="4" y="4" width="2" height="1"/>
       <!-- Torso -->
@@ -1502,6 +1617,10 @@
     <g class="walker-frame-2" fill="#FFFFFF">
       <!-- Head -->
       <rect x="3" y="1" width="4" height="3"/>
+      <!-- Headphones (dark navy): duplicated in both frames so they don't flicker with the walk cycle -->
+      <rect x="2" y="0" width="6" height="1" fill="#1a0a3d"/>
+      <rect x="2" y="2" width="1" height="2" fill="#1a0a3d"/>
+      <rect x="7" y="2" width="1" height="2" fill="#1a0a3d"/>
       <!-- Neck -->
       <rect x="4" y="4" width="2" height="1"/>
       <!-- Torso -->
@@ -1525,6 +1644,24 @@
       <!-- Right foot planted on ground line, far right -->
       <rect x="8" y="14" width="2" height="1"/>
     </g>
+  </svg>
+  <!-- Music notes drifting from the walker's right ear cup. Three eighth-note
+       sprites with staggered animation delays so they emit in sequence and
+       overlap softly. Sit inside .walker-stage so they translate with the walker. -->
+  <svg class="walker-note walker-note-1" viewBox="0 0 3 4" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+    <rect x="1" y="0" width="1" height="3"/>
+    <rect x="0" y="2" width="2" height="2"/>
+    <rect x="2" y="0" width="1" height="1"/>
+  </svg>
+  <svg class="walker-note walker-note-2" viewBox="0 0 3 4" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+    <rect x="1" y="0" width="1" height="3"/>
+    <rect x="0" y="2" width="2" height="2"/>
+    <rect x="2" y="0" width="1" height="1"/>
+  </svg>
+  <svg class="walker-note walker-note-3" viewBox="0 0 3 4" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+    <rect x="1" y="0" width="1" height="3"/>
+    <rect x="0" y="2" width="2" height="2"/>
+    <rect x="2" y="0" width="1" height="1"/>
   </svg>
 </div>
 
